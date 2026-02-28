@@ -196,27 +196,93 @@ npm test
 npx ng version
 ```
 
-## 9. Estructura principal
+## 9. Estructura principal (completa)
 
 ```text
-src/
-  app/
-    layout/
-    pages/home/
-    shared/
-      navbar/
-      hero-slider/
-      filters-panel/
-      card/
-      popover-price/
-      footer/
-      tag/
-  styles/
-    tokens/
-    base/
-    components/
 docs/
   accessibility-audit.md
+src/
+  index.html
+  main.ts
+  styles.scss
+  app/
+    app.config.ts
+    app.html
+    app.routes.ts
+    app.scss
+    app.spec.ts
+    app.ts
+    layout/
+      main-layout/
+        main-layout.html
+        main-layout.scss
+        main-layout.ts
+    pages/
+      home/
+        home.html
+        home.scss
+        home.ts
+    shared/
+      card/
+        card.html
+        card.scss
+        card.ts
+      filters-panel/
+        filters-panel.html
+        filters-panel.scss
+        filters-panel.ts
+      footer/
+        footer.html
+        footer.scss
+        footer.ts
+      hero-slider/
+        hero-slider.html
+        hero-slider.scss
+        hero-slider.ts
+      navbar/
+        navbar.html
+        navbar.scss
+        navbar.ts
+      popover-price/
+        popover-price.html
+        popover-price.scss
+        popover-price.ts
+      services/
+        ui/
+          card-popover-coordinator.service.ts
+      tag/
+        tag.html
+        tag.scss
+        tag.ts
+  styles/
+    styles.scss
+    base/
+      _accessibility-helpers.scss
+      _layout.scss
+      _reset.scss
+      _typography.scss
+      _utilities.scss
+    components/
+      _button.scss
+      _card.scss
+      _filters.scss
+      _hero.scss
+      _input.scss
+      _navbar.scss
+      _overlay.scss
+      _slider.scss
+      _tag.scss
+    tokens/
+      _brand.scss
+      _components.scss
+      _index.scss
+      _semantic.scss
+      _typography.scss
+  assets/
+    images/
+      backgrounds/
+      cards/
+      icons/
 ```
 
 ## 10. Comentarios finales para evaluación
