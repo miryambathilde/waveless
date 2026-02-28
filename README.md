@@ -3,156 +3,200 @@
 ## Datos de la candidata
 
 - GitHub: [miryambathilde](https://github.com/miryambathilde)
+- Repositorio: <https://github.com/miryambathilde/waveless>
 
-## 1. Resumen del proyecto
+## 1. Contexto y objetivo
 
-Esta entrega corresponde a la maquetación de la **página de inicio (home)** de un sitio ficticio de viajes, siguiendo el diseño base en Figma y los criterios del reto:
+Esta entrega corresponde a la maquetación de la **página de inicio (home)** de un sitio ficticio de viajes, tomando como base el diseño en Figma y los requisitos del reto:
 
-- Diseño responsive (desktop, tablet y móvil)
+- Diseño responsive (escritorio, tablet y móvil)
 - HTML semántico
-- CSS/SCSS organizado con metodología BEM
-- Interactividad en TypeScript
-- Buenas prácticas de accesibilidad y mantenibilidad
+- CSS/SCSS organizado y mantenible (BEM)
+- Interactividad en JavaScript/TypeScript
+- Buenas prácticas de accesibilidad y calidad técnica
 
-## 2. Stack usado
+## 2. Stack y versiones
 
-- **Framework**: Angular 21 (standalone components)
-- **Lenguaje**: TypeScript (modo estricto)
-- **Estilos**: SCSS
-- **Estado UI**: Signals (`signal`, `computed`, `input`, `output`)
-- **Optimización de imágenes**: `NgOptimizedImage`
+- **Angular**: `21.1.x`
+- **Angular CLI**: `21.1.5`
+- **TypeScript**: `~5.9.2`
+- **SCSS (Sass)**: integrado en Angular CLI
+- **Node.js**: LTS recomendado
+- **npm**: `10.x` o superior
 
-## 3. Decisiones técnicas y motivos de adopción
+## 3. Decisiones técnicas (con motivos y alternativas)
 
-### 3.1 Angular standalone + OnPush
+### 3.1 ¿Por qué Angular para esta prueba?
 
-**Decisión**: trabajar con componentes standalone y `ChangeDetectionStrategy.OnPush`.
-
-**Motivos**:
-
-- reduce acoplamiento entre módulos y simplifica la estructura
-- mejora rendimiento de renderizado en componentes de UI con muchos bloques repetidos (cards, filtros)
-- hace más predecible el ciclo de actualización
-
-**Resultado**:
-
-- estructura más limpia, con imports explícitos por componente
-- build estable y más fácil de escalar por features
-
-### 3.2 Signals para estado de UI
-
-**Decisión**: usar signals para estado local e interacciones (`filters`, menú móvil, drawer de filtros, slider, popovers).
+**Decisión**: usar Angular como framework principal.
 
 **Motivos**:
 
-- el estado es principalmente local de componente
-- evita sobreingeniería de meter store global para un caso de maquetación
-- facilita derivar estado con `computed` sin boilerplate
+- Me permite trabajar con una arquitectura robusta y consistente desde el inicio.
+- Favorece la separación clara por componentes (`layout`, `pages`, `shared`), algo clave en una prueba donde se evalúa organización.
+- Angular CLI aporta flujo de trabajo estable para build, serving y testing sin configurar tooling manualmente.
 
-**Trade-off**:
+**Ventajas frente a hacerlo en Vanilla JS/CSS**:
 
-- si en futuro la app crece con dominio complejo compartido entre muchas páginas, se puede complementar con store global.
+- Menos riesgo de desorden cuando la UI crece (estado, estructura y reutilización mejor definidos).
+- Mayor mantenibilidad a medio plazo.
+- Mejor escalabilidad si el proyecto evoluciona a más páginas/funcionalidades.
 
-### 3.3 Arquitectura de estilos por capas
+**Documentación**:
 
-**Decisión**: separar estilos en `tokens`, `base`, `components` y estilos de cada componente.
+- Angular docs: <https://angular.dev/>
+- Angular CLI: <https://angular.dev/tools/cli>
+- Angular Style Guide: <https://angular.dev/style-guide>
 
-**Motivos**:
+### 3.2 ¿Por qué TypeScript en lugar de JavaScript puro?
 
-- centraliza decisiones visuales (colores, tipografías, sombras) en un único sitio
-- reduce hardcodes y facilita cambios de branding
-- mantiene consistencia entre componentes y estados
-
-**Resultado**:
-
-- colores/fuentes/sombras controlados por tokens semánticos
-- menos riesgo de divergencias visuales entre bloques
-
-### 3.4 BEM + anidado SCSS con `&`
-
-**Decisión**: nomenclatura BEM estricta (`block__element--modifier`) y nesting con `&` en SCSS de componentes.
+**Decisión**: mantener TypeScript estricto en toda la capa de lógica.
 
 **Motivos**:
 
-- mejora legibilidad y evita selectores ambiguos
-- facilita mantenimiento cuando hay variantes y estados
-- reduce colisiones de estilos entre componentes
+- Tipado fuerte para evitar errores comunes en tiempo de desarrollo.
+- Mejora de mantenibilidad y legibilidad en componentes interactivos (filtros, slider, popovers, overlays).
+- Mejor experiencia de refactor con autocompletado y validación estática.
 
-**Resultado**:
+**Ventajas frente a JavaScript**:
 
-- código más claro para evaluación técnica
-- estilos de cada componente más fáciles de localizar y modificar
+- Menor probabilidad de errores de runtime por tipos inesperados.
+- Refactorizaciones más seguras.
+- Contratos de datos más claros entre componentes.
 
-### 3.5 Accesibilidad desde la implementación (no solo visual)
+**Documentación**:
 
-**Decisión**: integrar accesibilidad en la estructura y en la interacción.
+- TypeScript Handbook: <https://www.typescriptlang.org/docs/>
+- TSConfig reference: <https://www.typescriptlang.org/tsconfig>
 
-**Motivos**:
+### 3.3 ¿Por qué SCSS en lugar de CSS plano?
 
-- el reto valora WCAG y funcionalidad real en distintos dispositivos
-- overlays y drawers requieren gestión de foco para teclado
-
-**Implementado**:
-
-- landmarks semánticos (`header`, `main`, `footer`, `nav`, `section`, `aside`, `article`)
-- `skip-link` a contenido principal
-- dialogs con `role`, `aria-modal`, `aria-labelledby`/`aria-label`
-- cierre con `Escape`
-- foco inicial y retorno de foco al disparador
-- focus trap en menú móvil y drawer de filtros
-
-### 3.6 Path aliases en TypeScript
-
-**Decisión**: configurar aliases en `tsconfig.json`.
+**Decisión**: usar SCSS para estructurar estilos por tokens, base y componentes.
 
 **Motivos**:
 
-- evita rutas relativas largas (`../../../../...`)
-- mejora legibilidad y reduce errores al mover archivos
-- hace más consistente la arquitectura por capas
+- Uso de variables/tokens para colores, tipografías y elevaciones.
+- Nesting controlado para mantener BEM legible en componentes complejos.
+- Mejor modularidad y reuso de estilos.
 
-**Aliases configurados**:
+**Ventajas frente a CSS puro**:
 
-- `@app/*`
-- `@layout/*`
-- `@pages/*`
-- `@shared/*`
-- `@styles/*`
-- `@assets/*`
+- Reducción de hardcodes visuales.
+- Mayor consistencia de diseño entre componentes.
+- Mejor productividad en mantenimiento y evolución.
 
-## 4. Funcionalidades implementadas en la home
+**Documentación**:
 
-- Hero principal con slider y navegación
+- Sass docs: <https://sass-lang.com/documentation/>
+- BEM (referencia): <https://getbem.com/>
+
+### 3.4 Decisiones de arquitectura Angular aplicadas
+
+- **Standalone components** para reducir acoplamiento y mantener imports explícitos por componente.
+- **`ChangeDetectionStrategy.OnPush`** para mejorar rendimiento y control del render.
+- **Signals (`signal`, `computed`, `input`, `output`)** para estado local simple y predecible.
+- **`NgOptimizedImage`** para optimización de imágenes estáticas relevantes.
+- **Path aliases en TypeScript** (`@app`, `@shared`, `@pages`, etc.) para evitar rutas relativas largas y mejorar legibilidad.
+
+**Documentación**:
+
+- Standalone/components: <https://angular.dev/essentials/components>
+- Signals: <https://angular.dev/guide/signals>
+- Inputs/Outputs modernos: <https://angular.dev/guide/components/inputs> y <https://angular.dev/guide/components/outputs>
+- NgOptimizedImage: <https://angular.dev/guide/image-optimization>
+- Paths en TypeScript: <https://www.typescriptlang.org/tsconfig#paths>
+
+## 4. Buenas prácticas aplicadas
+
+- Código orientado a **claridad y mantenibilidad**.
+- Nomenclatura **BEM** consistente en plantillas y SCSS.
+- Estructura de estilos en capas:
+  - `src/styles/tokens`
+  - `src/styles/base`
+  - `src/styles/components`
+  - estilos por componente en `src/app/**`
+- Separación de responsabilidades entre layout, página y componentes reutilizables.
+
+## 5. Funcionalidad implementada
+
+- Hero con slider y navegación
 - Navbar desktop + menú móvil en overlay
-- Panel de filtros (desktop sticky + drawer en tablet/móvil)
+- Panel de filtros (sticky en desktop + drawer en móvil/tablet)
 - Grid de cards
 - Popover de desglose de precio por card
 - Footer responsive
 
-## 5. Responsive
+## 6. Responsive
 
-La página se adapta a desktop, tablet y móvil con breakpoints y ajustes por componente:
+La home se adapta a los tres contextos requeridos:
 
-- navegación
-- filtros
-- rejilla de cards
-- layout general y jerarquía de contenido
+- **Escritorio**
+- **Tablet**
+- **Móvil**
 
-## 6. Accesibilidad y validaciones
+La adaptación se resuelve con breakpoints y ajustes por componente (navegación, filtros, cards y layout principal).
 
-Se incluyó una auditoría técnica en:
+## 7. Accesibilidad
+
+Se han aplicado prácticas de accesibilidad desde la implementación:
+
+- Estructura semántica (`header`, `main`, `footer`, `nav`, `section`, `aside`, `article`)
+- `skip-link` al contenido principal
+- Gestión de foco y teclado en overlays/dialogs (`Escape`, focus trap, retorno de foco)
+- Uso de atributos ARIA en interacciones clave
+
+Auditoría técnica incluida en:
 
 - [docs/accessibility-audit.md](docs/accessibility-audit.md)
 
-Checks incluidos:
+**Referencia WCAG**:
 
-- `alt`/`[alt]` en imágenes
-- `type` en botones
-- roles/ARIA en dialogs
-- enlaces placeholder
-- contraste en pares de color principales (validación orientativa WCAG)
+- <https://www.w3.org/WAI/standards-guidelines/wcag/>
 
-## 7. Estructura principal
+## 8. Instalación y ejecución en local
+
+### 8.1 Clonar repositorio
+
+```bash
+git clone https://github.com/miryambathilde/waveless.git
+cd wareless
+```
+
+### 8.2 Instalar dependencias
+
+```bash
+npm install
+```
+
+### 8.3 Levantar servidor de desarrollo
+
+Opción con Angular CLI (abre navegador automáticamente):
+
+```bash
+npx ng serve -o
+```
+
+Opción equivalente con script del proyecto:
+
+```bash
+npm start
+```
+
+### 8.4 URL local
+
+```text
+http://localhost:4200
+```
+
+### 8.5 Comandos útiles
+
+```bash
+npm run build
+npm test
+npx ng version
+```
+
+## 9. Estructura principal
 
 ```text
 src/
@@ -175,63 +219,8 @@ docs/
   accessibility-audit.md
 ```
 
-## 8. Instalación y ejecución local
+## 10. Comentarios finales para evaluación
 
-### Requisitos
-
-- Node.js (LTS recomendado)
-- npm
-- Angular CLI 21.1.5 (se puede usar vía `npx` sin instalación global)
-
-### Versiones del proyecto
-
-- Angular: `21.1.x`
-- Angular CLI: `21.1.5`
-
-### Pasos
-
-1. Clonar el repositorio:
-
-```bash
-git clone 'https://github.com/miryambathilde/waveless'
-cd waveless
-```
-
-1. Instalar dependencias:
-
-```bash
-npm install
-```
-
-1. Levantar entorno local:
-
-```bash
-npm start
-```
-
-1. Abrir:
-
-```text
-http://localhost:4200
-```
-
-### Verificación rápida del entorno (opcional)
-
-```bash
-node -v
-npm -v
-npx ng version
-```
-
-### Comandos útiles
-
-```bash
-npm run build
-npm test
-```
-
-## 9. Comentarios adicionales para evaluación
-
-- Se priorizó calidad técnica y coherencia en decisiones, no sólo resultado visual.
-- La estructura está preparada para evolución futura (nuevas páginas, nuevos componentes, nuevos tokens).
-- Se mantuvo foco en código limpio, legible y organizado, alineado con lo pedido en el enunciado.
+- Esta solución está orientada a demostrar no sólo resultado visual, sino también **calidad técnica**, **coherencia de decisiones** y **mantenibilidad**.
+- Las decisiones de framework/lenguaje/estilos se han tomado buscando equilibrio entre productividad, robustez y escalabilidad.
+- La base queda preparada para crecer con nuevas páginas y nuevas variantes de componentes sin perder orden en el código.
