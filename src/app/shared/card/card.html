@@ -1,0 +1,79 @@
+﻿<article class="card">
+  <div class="card__media">
+    <img class="card__image" [ngSrc]="image()" [alt]="title()" width="264" height="188" loading="lazy" />
+    <app-tag class="card__tag" label="Quads" variant="accent" size="sm" />
+  </div>
+
+  <div class="card__content">
+    <div class="card__body">
+      <p class="card__text">
+        {{ description() }}
+        @if (durationBucket()) {
+          <span class="card__duration">{{ durationBucket() }} d&iacute;as</span>
+        }
+      </p>
+
+      <h3 class="card__title">{{ title() }}</h3>
+    </div>
+
+    <div class="card__footer">
+      <div class="card__footer-left">
+        <div class="card__price">
+          <span class="card__price-prefix">Desde</span>
+          <span class="card__price-value">{{ price() }}</span>
+        </div>
+
+        <!-- wrapper para anclar el popover -->
+        <div class="card__breakdown-wrap">
+          <button
+            #breakdownButton
+            type="button"
+            class="card__breakdown"
+            (click)="togglePopover()"
+            [attr.aria-expanded]="isPopoverOpen()"
+            [attr.aria-controls]="popoverId"
+            aria-haspopup="dialog"
+          >
+            <span class="card__breakdown-text">Ver desglose</span>
+
+            <svg
+              class="card__breakdown-icon"
+              width="13"
+              height="8"
+              viewBox="0 0 13 8"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                d="M6.7629 6.87365C6.37213 7.26561 5.73731 7.26561 5.34654 6.87365L0.291784 1.80353C-0.0973108 1.41325 -0.0973103 0.781742 0.291784 0.391464L0.388639 0.294315C0.779408 -0.0976407 1.41423 -0.0976402 1.805 0.294316L6.05472 4.55696L10.3044 0.294316C10.6952 -0.0976405 11.33 -0.0976402 11.7208 0.294316L11.8177 0.391465C12.2068 0.781742 12.2068 1.41325 11.8177 1.80353L6.7629 6.87365Z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+
+          @if (isPopoverOpen()) {
+            <app-popover-price
+              [attr.id]="popoverId"
+              #popoverHost
+              [style.--popover-left.px]="popoverPosition().left"
+              [style.--popover-top.px]="popoverPosition().top"
+              [location]="description()"
+              [days]="durationBucket() ? durationBucket() + ' d\u00EDas' : ''"
+              [items]="[
+                { label: 'Precio antes de impuestos', value: '1.124,00 \u20AC' },
+                { label: 'Impuesto', value: '4,43 \u20AC' },
+                { label: 'Lorem ipsum', value: '150,42 \u20AC' },
+              ]"
+              [total]="'2.455,00 \u20AC'"
+              (close)="closePopover()"
+            />
+          }
+        </div>
+      </div>
+
+      <button type="button" class="button button--secondary button--sm card__cta">Reservar</button>
+    </div>
+  </div>
+</article>

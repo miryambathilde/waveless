@@ -1,0 +1,107 @@
+@use '../tokens/components' as *;
+
+/* =========================================================
+   TEXT INPUT COMPONENT
+========================================================= */
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+
+  /* =========================
+     LABEL
+  ========================= */
+
+  &__label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $input-label-default;
+
+    &--disabled {
+      color: $input-label-disabled;
+    }
+  }
+
+  /* =========================
+     FIELD WRAPPER
+  ========================= */
+
+  &__field {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    padding: 0.6rem 0.875rem;
+    border-radius: 0.75rem;
+
+    background-color: $input-bg-default;
+    border: 1px solid $input-border-default;
+
+    transition:
+      border-color 200ms ease,
+      background-color 200ms ease;
+
+    &:hover {
+      border-color: $input-border-hover;
+    }
+
+    &:focus-within {
+      border-color: $input-border-focus;
+    }
+
+    &--disabled {
+      background-color: $input-bg-disabled;
+      border-color: $input-border-disabled;
+      cursor: not-allowed;
+    }
+  }
+
+  /* =========================
+     INPUT ELEMENT
+  ========================= */
+
+  &__control {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+
+    font-size: 0.95rem;
+    color: $input-text-default;
+
+    &::placeholder {
+      color: $input-placeholder-default;
+    }
+
+    &:hover::placeholder {
+      color: $input-placeholder-hover;
+    }
+
+    &:disabled {
+      color: $input-text-disabled;
+      cursor: not-allowed;
+    }
+  }
+
+  /* =========================
+     ICON
+  ========================= */
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: $input-icon-default;
+    transition: color 200ms ease;
+
+    .input__field:hover & {
+      color: $input-icon-hover;
+    }
+
+    &--disabled {
+      color: $input-icon-disabled;
+    }
+  }
+}

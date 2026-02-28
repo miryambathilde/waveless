@@ -1,0 +1,133 @@
+@use '../tokens/semantic' as *;
+@use '../tokens/typography' as *;
+
+/* =========================================================
+   Global Typography
+========================================================= */
+
+/* Base */
+
+body {
+  font-family: $font-family-base;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: $fg-on-white-default;
+  background-color: $bg-white-default;
+}
+
+/* Headings */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-display;
+  font-weight: $font-weight-heading;
+  line-height: 1.25;
+  color: $fg-title-default;
+  margin: 0 0 1rem;
+}
+
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2.25rem;
+}
+h3 {
+  font-size: 1.875rem;
+}
+h4 {
+  font-size: 1.5rem;
+}
+h5 {
+  font-size: 1.25rem;
+}
+h6 {
+  font-size: 1.125rem;
+}
+
+/* Paragraph */
+
+p {
+  margin: 0 0 1rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Links */
+
+a {
+  color: $fg-link-default;
+  text-decoration: none;
+  transition: color 200ms ease-in-out;
+
+  &:hover {
+    color: $fg-link-hover;
+    text-decoration: underline;
+  }
+}
+
+/* Lists */
+
+ul,
+ol {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Code */
+
+code,
+pre,
+kbd,
+samp {
+  font-family: $font-family-mono;
+  font-size: 0.9em;
+}
+
+code {
+  padding: 0.125rem 0.25rem;
+  background-color: $bg-medium-light-default;
+  border-radius: 0.25rem;
+}
+
+pre {
+  padding: 1rem;
+  background-color: $bg-medium-light-default;
+  border-radius: 0.375rem;
+  overflow-x: auto;
+  margin: 0 0 1rem;
+
+  code {
+    padding: 0;
+    background: none;
+  }
+}
+
+/* Blockquote */
+
+blockquote {
+  padding: 1rem;
+  border-left: 4px solid $border-primary-dark-default;
+  background-color: $bg-light-default;
+  margin: 0 0 1rem;
+  font-style: italic;
+}
+
+/* Divider */
+
+hr {
+  border: none;
+  border-top: 1px solid $divisor-light;
+  margin: 2rem 0;
+}

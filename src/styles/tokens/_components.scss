@@ -1,0 +1,181 @@
+@use './semantic' as *;
+
+/* =========================================================
+   Component Tokens
+========================================================= */
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+/* Shape */
+$button-radius: 999px;
+
+/* -------------------------
+   PRIMARY
+-------------------------- */
+
+$button-primary-text-default: $fg-on-primary-dark-default;
+$button-primary-text-hover: $fg-on-primary-dark-hover;
+$button-primary-text-disabled: $fg-on-primary-dark-disabled;
+
+$button-primary-bg-default: $bg-primary-dark-default;
+$button-primary-bg-hover: $bg-primary-dark-hover;
+$button-primary-bg-disabled: $bg-primary-dark-disabled;
+
+$button-primary-border-default: $border-primary-dark-default;
+$button-primary-border-hover: $border-primary-dark-hover;
+$button-primary-border-disabled: $border-primary-dark-disabled;
+
+/* -------------------------
+   ACCENT
+-------------------------- */
+
+$button-accent-text-default: $fg-on-secondary-medium-default;
+$button-accent-text-hover: $fg-on-secondary-medium-hover;
+$button-accent-text-disabled: $fg-on-secondary-medium-disabled;
+
+$button-accent-bg-default: $bg-secondary-medium-default;
+$button-accent-bg-hover: $bg-secondary-medium-hover;
+$button-accent-bg-disabled: $bg-secondary-medium-disabled;
+
+$button-accent-border-default: $border-secondary-medium-default;
+$button-accent-border-hover: $border-secondary-medium-hover;
+$button-accent-border-disabled: $border-white-default;
+
+/* -------------------------
+   SECONDARY (Outlined)
+-------------------------- */
+
+$button-secondary-text-default: $fg-primary-dark-default;
+$button-secondary-text-hover: $fg-primary-dark-hover;
+$button-secondary-text-disabled: $fg-on-primary-dark-disabled;
+
+$button-secondary-bg-default: $bg-white-default;
+$button-secondary-bg-hover: $bg-white-hover;
+$button-secondary-bg-disabled: $bg-white-default;
+
+$button-secondary-border-default: $border-primary-dark-default;
+$button-secondary-border-hover: $border-primary-dark-hover;
+$button-secondary-border-disabled: $border-primary-dark-disabled;
+
+/* -------------------------
+   SIZES
+-------------------------- */
+
+$button-padding-sm: 0.4rem 0.75rem;
+$button-padding-md: 0.6rem 1rem;
+$button-padding-lg: 0.85rem 1.5rem;
+
+$button-font-sm: 0.75rem;
+$button-font-md: 0.875rem;
+$button-font-lg: 1rem;
+
+/* =========================================================
+   CARD
+========================================================= */
+
+$card-bg-default: $bg-white-default;
+$card-bg-hover: $bg-white-default;
+
+$card-title-default: $fg-title-default;
+$card-title-hover: $fg-title-default;
+
+$card-text-default: $fg-on-light-default;
+$card-text-hover: $fg-on-light-hover;
+
+$card-price-default: $fg-on-light-default;
+
+$card-breakdown-text-default: $fg-primary-dark-default;
+$card-breakdown-text-hover: $fg-primary-dark-hover;
+
+$card-breakdown-chevron-default: $fg-primary-dark-default;
+$card-breakdown-chevron-hover: $fg-primary-dark-hover;
+
+/* =========================================================
+   OVERLAY / MODAL
+========================================================= */
+
+$overlay-bg-default: $bg-white-default;
+$overlay-border-default: $border-medium-default;
+
+$overlay-top-bar-bg: $bg-secondary-light-default;
+$overlay-bottom-bar-bg: $overlay-top-bar-bg;
+
+$overlay-text-default: $fg-on-light-default;
+$overlay-title-default: $fg-title-default;
+$overlay-price-default: $fg-on-light-default;
+
+$overlay-link-default: $fg-link-default;
+$overlay-link-hover: $fg-link-hover;
+
+$overlay-alpha-bg: $bg-basic-medium-alpha;
+
+/* =========================================================
+   FORM / TEXT INPUT
+========================================================= */
+
+$input-bg-default: $bg-white-default;
+$input-bg-hover: $bg-white-default;
+$input-bg-focus: $bg-white-default;
+$input-bg-disabled: $bg-input-disabled;
+
+$input-border-default: $border-primary-dark-default;
+$input-border-hover: $border-primary-dark-hover;
+$input-border-focus: $border-primary-dark-default;
+$input-border-disabled: $border-input-disabled;
+
+$input-label-default: $fg-secondary-dark-default;
+$input-label-hover: $fg-secondary-dark-hover;
+$input-label-focus: $fg-secondary-dark-default;
+$input-label-disabled: $fg-text-light-disabled;
+
+$input-placeholder-default: $fg-medium-light-default;
+$input-placeholder-hover: $fg-medium-light-hover;
+$input-placeholder-disabled: $fg-text-light-disabled;
+
+$input-text-default: $fg-on-light-default;
+$input-text-hover: $fg-on-light-hover;
+$input-text-disabled: $fg-text-dark-disabled;
+
+$input-icon-default: $icon-primary-dark-default;
+$input-icon-hover: $icon-primary-dark-hover;
+$input-icon-disabled: $icon-disabled;
+
+/* =========================================================
+   TAG
+========================================================= */
+
+$tag-primary-bg: $bg-secondary-medium-default;
+$tag-primary-text: $icon-black-default;
+
+$tag-secondary-bg: $bg-medium-light-default;
+$tag-secondary-text: $icon-black-default;
+
+/* =========================================================
+   SLIDER INDICATOR
+========================================================= */
+
+$slider-indicator-bg-selected: $bg-secondary-medium-default;
+$slider-indicator-bg-selected-hover: $bg-secondary-medium-hover;
+
+$slider-indicator-border-selected: $border-white-default;
+$slider-indicator-border-selected-hover: $border-light-hover;
+
+$slider-indicator-bg-default: $bg-white-high-alpha;
+$slider-indicator-bg-hover: $bg-white-hover;
+
+$slider-indicator-border-default: $border-white-default;
+$slider-indicator-border-hover: $border-light-hover;
+
+/* =========================================================
+   ELEVATION
+========================================================= */
+
+$shadow-sm: 0 2px 10px $shadow-color-soft;
+$shadow-md: 0 8px 18px $shadow-color-medium-strong;
+$shadow-card-default: 0 10px 24px $shadow-color-medium;
+$shadow-card-hover: 0 14px 28px $shadow-color-strong;
+$shadow-panel: -12px 0 32px $shadow-color-overlay;
+$shadow-popover: 0 4px 8px $shadow-color-tooltip;
+$shadow-text-hero: 0 12px 24px $shadow-color-text;

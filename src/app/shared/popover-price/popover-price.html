@@ -1,0 +1,46 @@
+<div class="popover-price" role="dialog" aria-modal="false" [attr.aria-label]="title()">
+  <div class="popover-price__header">
+    <p class="popover-price__title">{{ title() }}</p>
+
+    <button type="button" class="popover-price__close" aria-label="Cerrar" (click)="onDismiss()">
+      <svg
+        class="popover-price__close-icon"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="popover-price__body">
+    <p class="popover-price__destination">
+      {{ location() }}
+      @if (days()) {
+        <span class="popover-price__duration">{{ days() }}</span>
+      }
+    </p>
+
+    <ul class="popover-price__list">
+      @for (item of items(); track item.label) {
+        <li class="popover-price__row">
+          <span class="popover-price__label">{{ item.label }}</span>
+          <span class="popover-price__value">{{ item.value }}</span>
+        </li>
+      }
+    </ul>
+
+    <div class="popover-price__divider" aria-hidden="true"></div>
+
+    <div class="popover-price__total">
+      <span class="popover-price__total-label">Precio final</span>
+      <strong class="popover-price__total-value">{{ total() }}</strong>
+    </div>
+  </div>
+</div>

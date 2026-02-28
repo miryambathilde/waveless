@@ -1,0 +1,95 @@
+@use '../tokens/semantic' as *;
+
+/* =========================================================
+   HERO COMPONENT
+========================================================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+
+  display: flex;
+  align-items: center;
+
+  padding-block: 4rem;
+  padding-inline: 1rem;
+
+  background-color: $bg-primary-dark-default;
+  color: $fg-on-primary-dark-default;
+
+  overflow: hidden;
+  z-index: 0;
+
+  /* =========================
+     CONTAINER
+  ========================= */
+
+  &__container {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+  }
+
+  /* =========================
+     CONTENT
+  ========================= */
+
+  &__content {
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: $fg-on-primary-dark-default;
+  }
+
+  &__subtitle {
+    font-size: 1.125rem;
+    font-weight: 400;
+    opacity: 0.9;
+    color: $fg-on-primary-dark-default;
+  }
+
+  /* =========================
+     ACTIONS
+  ========================= */
+
+  &__actions {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* =========================
+     RESPONSIVE
+  ========================= */
+
+  @media (max-width: 768px) {
+    padding-block: 3rem;
+    min-height: 360px;
+
+    &__title {
+      font-size: 2rem;
+    }
+
+    &__subtitle {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding-block: 2.5rem;
+    min-height: 320px;
+
+    &__title {
+      font-size: 1.75rem;
+    }
+  }
+}

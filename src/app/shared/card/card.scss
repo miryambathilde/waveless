@@ -1,0 +1,51 @@
+:host {
+  position: relative;
+  display: block;
+  z-index: 0;
+}
+
+.card {
+  position: relative;
+  z-index: 0;
+
+  &__content,
+  &__footer {
+    overflow: visible;
+  }
+
+  &__breakdown-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__breakdown {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  app-popover-price {
+    position: fixed;
+    left: var(--popover-left, 50vw);
+    top: var(--popover-top, 50vh);
+    z-index: 2000;
+  }
+
+  &__popover {
+    top: calc(100% + 12px);
+    left: 0;
+  }
+}
+
+:host(.card--popover-open) {
+  z-index: 200;
+
+  .card {
+    overflow: visible;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}

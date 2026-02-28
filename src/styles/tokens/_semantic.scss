@@ -1,0 +1,164 @@
+/* =========================================================
+   Semantic Tokens (Figma-aligned)
+   Source of truth: brand.scss scales
+========================================================= */
+
+@use 'sass:color';
+@use './brand' as *;
+
+/* =========================
+   color/background
+========================= */
+
+$bg-white-default: $basic-000;
+$bg-white-hover: $basic-050;
+$bg-white-high-alpha: $basic-000-high-alpha;
+
+$bg-light-default: $basic-050;
+$bg-light-hover: $basic-100;
+
+$bg-medium-light-default: $basic-100;
+$bg-medium-light-hover: $basic-200;
+
+$bg-medium-dark-default: $basic-300;
+$bg-medium-dark-hover: $basic-400;
+
+$bg-primary-low-alpha: $primary-700-alpha-32;
+$bg-primary-light-default: $primary-050;
+$bg-primary-light-hover: $primary-100;
+
+$bg-primary-dark-default: $primary-700;
+$bg-primary-dark-hover: $primary-800;
+$bg-primary-dark-disabled: $basic-400;
+
+$bg-secondary-light-default: $secondary-050;
+$bg-secondary-light-hover: $secondary-100;
+
+$bg-secondary-medium-light-default: $secondary-200;
+$bg-secondary-medium-light-hover: $secondary-300;
+
+$bg-secondary-medium-default: $secondary-400;
+$bg-secondary-medium-hover: $secondary-500;
+$bg-secondary-medium-disabled: $basic-500;
+
+$bg-input-disabled: $basic-100;
+
+$bg-basic-medium-alpha: $basic-500-alpha;
+
+$bg-black-default: $basic-950;
+$bg-surface-soft-default: $secondary-050;
+$bg-surface-soft-hover: $secondary-100;
+$bg-backdrop-soft: color.change($basic-950, $alpha: 0.18);
+$bg-backdrop-strong: color.change($basic-950, $alpha: 0.45);
+$bg-backdrop-hero-90-55: color.change($basic-950, $alpha: 0.55);
+$bg-backdrop-hero-90-18: color.change($basic-950, $alpha: 0.18);
+$bg-backdrop-hero-180-45: color.change($basic-950, $alpha: 0.45);
+$bg-backdrop-hero-180-35: color.change($basic-950, $alpha: 0.35);
+$bg-backdrop-hero-180-20: color.change($basic-950, $alpha: 0.2);
+
+/* =========================
+   color/foreground
+========================= */
+
+$fg-on-white-default: $basic-800;
+$fg-on-white-hover: $basic-900;
+
+$fg-on-light-default: $basic-800;
+$fg-on-light-hover: $basic-900;
+
+$fg-medium-light-default: $basic-500;
+$fg-medium-light-hover: $basic-600;
+
+$fg-medium-dark-default: $basic-700;
+$fg-medium-dark-hover: $basic-800;
+
+$fg-primary-dark-default: $primary-700;
+$fg-primary-dark-hover: $primary-800;
+
+$fg-secondary-medium-default: $secondary-400;
+$fg-secondary-medium-hover: $secondary-500;
+
+$fg-secondary-dark-default: $secondary-600;
+$fg-secondary-dark-hover: $secondary-700;
+
+$fg-text-light-disabled: $basic-400;
+$fg-text-dark-disabled: $basic-500;
+
+$fg-link-default: $fg-primary-dark-default;
+$fg-link-hover: $fg-primary-dark-hover;
+
+$fg-title-default: $fg-primary-dark-default;
+$fg-support-default: $support-info-600;
+
+/* “on-*” for buttons */
+$fg-on-primary-dark-default: $basic-000;
+$fg-on-primary-dark-hover: $basic-050;
+$fg-on-primary-dark-disabled: $basic-600;
+
+$fg-on-secondary-medium-default: $secondary-800;
+$fg-on-secondary-medium-hover: $secondary-900;
+$fg-on-secondary-medium-disabled: $basic-700;
+
+/* =========================
+   color/border
+========================= */
+
+$border-white-default: $basic-000;
+$border-white-hover: $basic-050;
+
+$border-light-default: $basic-050;
+$border-light-hover: $basic-100;
+
+$border-medium-default: $basic-100;
+$border-medium-hover: $basic-200;
+
+$border-dark-default: $basic-300;
+$border-dark-hover: $basic-400;
+
+$border-primary-dark-default: $primary-700;
+$border-primary-dark-hover: $primary-800;
+$border-primary-dark-disabled: $basic-500;
+$border-primary-dark-soft: color.change($primary-700, $alpha: 0.16);
+
+$border-secondary-medium-default: $secondary-400;
+$border-secondary-medium-hover: $secondary-500;
+
+$border-input-disabled: $border-primary-dark-disabled;
+$border-dark-soft: color.change($basic-950, $alpha: 0.06);
+
+/* =========================
+   color/icon
+========================= */
+
+$icon-black-default: $basic-800;
+$icon-black-hover: $basic-900;
+
+$icon-primary-dark-default: $fg-primary-dark-default;
+$icon-primary-dark-hover: $fg-primary-dark-hover;
+
+$icon-secondary-medium-default: $fg-secondary-medium-default;
+$icon-secondary-medium-hover: $bg-secondary-medium-hover;
+
+$icon-secondary-dark-default: $fg-secondary-dark-default;
+$icon-secondary-dark-hover: $fg-secondary-dark-hover;
+
+$icon-disabled: $fg-text-dark-disabled;
+
+/* =========================
+   color/divisor
+========================= */
+
+$divisor-light: $basic-100;
+$divisor-medium: $basic-400;
+
+/* =========================
+   color/shadow
+========================= */
+
+$shadow-color-soft: color.change($basic-950, $alpha: 0.08);
+$shadow-color-medium: color.change($basic-950, $alpha: 0.1);
+$shadow-color-medium-strong: color.change($basic-950, $alpha: 0.12);
+$shadow-color-strong: color.change($basic-950, $alpha: 0.14);
+$shadow-color-overlay: color.change($basic-950, $alpha: 0.18);
+$shadow-color-tooltip: color.change($basic-950, $alpha: 0.2);
+$shadow-color-text: color.change($basic-950, $alpha: 0.35);

@@ -1,0 +1,181 @@
+@use '../tokens/components' as *;
+@use '../tokens/semantic' as *;
+@use '../tokens/typography' as *;
+
+/* =========================================================
+   CARD COMPONENT (Figma aligned)
+========================================================= */
+
+.card {
+  display: flex;
+  flex-direction: column;
+
+  background-color: $card-bg-default;
+  border-radius: 1.25rem;
+  overflow: hidden;
+
+  box-shadow: $shadow-card-default;
+  transition:
+    box-shadow 200ms ease,
+    transform 200ms ease;
+
+  &:hover {
+    box-shadow: $shadow-card-hover;
+    transform: translateY(-2px);
+  }
+
+  &__media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+
+    img {
+      width: 100%;
+      height: 188px;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  &__tag {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 1;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  &__body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &__title {
+    margin: 0;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: $fg-on-white-default;
+    font-family: $font-family-base;
+  }
+
+  &__text {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 18px;
+    color: $fg-primary-dark-default;
+    font-family: $font-family-display;
+  }
+
+  &__duration {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    color: $fg-on-white-default;
+    margin-left: 4px;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 12px 16px 16px;
+    gap: 31px;
+    background-color: $bg-surface-soft-default;
+    min-height: 86px;
+  }
+
+  &__footer-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  &__price {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: baseline;
+    color: $card-price-default;
+  }
+
+  &__price-prefix {
+    font-size: 0.75rem;
+    line-height: 16px;
+    font-weight: 500;
+    color: $card-text-default;
+  }
+
+  &__price-value {
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  &__cta {
+    flex: 0 0 auto;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  &__breakdown {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25em;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+    white-space: pre-line;
+    color: $card-breakdown-text-default;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    position: relative;
+    transition: color 200ms ease;
+
+    &:hover {
+      color: $card-breakdown-text-hover;
+    }
+
+    &:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+      border-radius: 0.25rem;
+    }
+  }
+
+  &__breakdown-icon {
+    width: 6px;
+    height: 9px;
+    flex: 0 0 auto;
+    position: absolute;
+    left: 86px;
+    top: 2px;
+    color: $fg-primary-dark-default;
+    transform: translateY(1px);
+  }
+}
+
+/* Mobile tweak */
+@media (max-width: 480px) {
+  .card {
+    border-radius: 1rem;
+
+    &__title {
+      font-size: 1.125rem;
+    }
+  }
+}

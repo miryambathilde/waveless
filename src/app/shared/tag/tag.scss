@@ -1,0 +1,41 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  line-height: 1;
+  user-select: none;
+  white-space: nowrap;
+
+  &--sm {
+    height: 20px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+
+  &--md {
+    height: 22px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  &--accent {
+    background: var(--color-secondary-400);
+    color: var(--color-secondary-800);
+  }
+
+  &--neutral {
+    background: var(--color-basic-100);
+    color: var(--color-basic-700);
+  }
+
+  &__text {
+    display: inline-block;
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 16px;
+    vertical-align: middle;
+  }
+}

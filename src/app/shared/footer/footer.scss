@@ -1,0 +1,50 @@
+@use '../../../styles/tokens/semantic' as *;
+@use '../../../styles/tokens/typography' as typography;
+
+.footer {
+  margin-top: 56px;
+  border-top: 1px solid $border-primary-dark-soft;
+  background: $bg-surface-soft-default;
+
+  &__top {
+    min-height: 128px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__top-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__logo {
+    width: 145px;
+    height: 32px;
+    display: block;
+  }
+
+  &__bottom {
+    height: 52px;
+    background: $bg-medium-light-default;
+    display: flex;
+    align-items: center;
+  }
+
+  &__bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__copy {
+    margin: 0;
+    font-family: typography.$font-family-base;
+    color: $fg-primary-dark-default;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+    opacity: 0.9;
+    text-align: center;
+  }
+}

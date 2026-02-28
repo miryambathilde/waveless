@@ -1,0 +1,58 @@
+/* =========================================================
+   Global Layout & Containers
+========================================================= */
+
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+
+$container: 1200px;
+$container-sm: 768px;
+$container-lg: 1440px;
+
+.container {
+  width: 100%;
+  max-width: $container;
+  margin-inline: auto;
+  padding-inline: 1rem;
+
+  @media (min-width: $bp-md) {
+    padding-inline: 1.5rem;
+  }
+
+  @media (min-width: $bp-lg) {
+    padding-inline: 2rem;
+  }
+
+  &--sm {
+    max-width: $container-sm;
+  }
+
+  &--lg {
+    max-width: $container-lg;
+  }
+}
+
+/* Si prefieres mantener tus clases actuales sin tocar HTML,
+   puedes mapearlas a la nueva API: */
+.container-sm {
+  @extend .container;
+  @extend .container--sm;
+}
+
+.container-lg {
+  @extend .container;
+  @extend .container--lg;
+}
+
+.section {
+  padding-block: 3rem;
+
+  @media (max-width: $bp-md) {
+    padding-block: 2rem;
+  }
+
+  @media (max-width: $bp-sm) {
+    padding-block: 1.5rem;
+  }
+}

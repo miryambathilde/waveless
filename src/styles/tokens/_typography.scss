@@ -1,0 +1,24 @@
+/* =========================================================
+   Typography Tokens
+========================================================= */
+
+/* Font families */
+
+$font-family-base:
+  'Nunito',
+  -apple-system,
+  BlinkMacSystemFont,
+  'Segoe UI',
+  Roboto,
+  sans-serif;
+
+$font-family-display: 'Syne', $font-family-base;
+$font-family-mono: 'Fira Code', 'Monaco', 'Consolas', monospace;
+
+/* Font weights */
+
+$font-weight-regular: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$font-weight-heading: $font-weight-bold;

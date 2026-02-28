@@ -1,0 +1,104 @@
+@use '../tokens/components' as *;
+
+/* =========================================================
+   SLIDER COMPONENT
+========================================================= */
+
+.slider {
+  position: relative;
+  width: 100%;
+
+  /* =========================
+     NAVIGATION BUTTONS
+  ========================= */
+
+  &__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 2.5rem;
+    height: 2.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    border: none;
+
+    cursor: pointer;
+
+    transition:
+      background-color 200ms ease,
+      color 200ms ease;
+
+    /* Left / Right positioning */
+    &--prev {
+      left: 0.75rem;
+    }
+
+    &--next {
+      right: 0.75rem;
+    }
+
+    /* Background + icon colors from tokens */
+    background-color: $button-primary-bg-default;
+    color: $button-primary-text-default;
+
+    &:hover:not(:disabled) {
+      background-color: $button-primary-bg-hover;
+      color: $button-primary-text-hover;
+    }
+
+    &:disabled {
+      background-color: $button-primary-bg-disabled;
+      color: $button-primary-text-disabled;
+      cursor: not-allowed;
+    }
+  }
+
+  /* =========================
+     INDICATORS
+  ========================= */
+
+  &__indicators {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    margin-top: 1rem;
+  }
+
+  &__indicator {
+    width: 0.75rem;
+    height: 0.75rem;
+
+    border-radius: 50%;
+    border: 1px solid $slider-indicator-border-default;
+
+    background-color: $slider-indicator-bg-default;
+
+    cursor: pointer;
+
+    transition:
+      background-color 200ms ease,
+      border-color 200ms ease;
+
+    &:hover {
+      background-color: $slider-indicator-bg-hover;
+      border-color: $slider-indicator-border-hover;
+    }
+
+    &--active {
+      background-color: $slider-indicator-bg-selected;
+      border-color: $slider-indicator-border-selected;
+
+      &:hover {
+        background-color: $slider-indicator-bg-selected-hover;
+        border-color: $slider-indicator-border-selected-hover;
+      }
+    }
+  }
+}

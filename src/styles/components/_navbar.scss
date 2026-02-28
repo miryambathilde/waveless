@@ -1,0 +1,106 @@
+@use '../tokens/semantic' as *;
+
+/* =========================================================
+   NAVBAR COMPONENT
+========================================================= */
+
+.navbar {
+  position: relative;
+  width: 100%;
+
+  background-color: $bg-white-default;
+  border-bottom: 1px solid $border-secondary-medium-default;
+
+  /* =========================
+     CONTAINER
+  ========================= */
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 72px;
+  }
+
+  /* =========================
+     LOGO
+  ========================= */
+
+  &__logo {
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: $fg-primary-dark-default;
+    text-decoration: none;
+  }
+
+  /* =========================
+     MENU
+  ========================= */
+
+  &__menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  &__item {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $fg-on-light-default;
+    cursor: pointer;
+
+    transition: color 200ms ease;
+
+    &:hover {
+      color: $fg-primary-dark-hover;
+    }
+
+    &--active {
+      color: $fg-primary-dark-default;
+      font-weight: 600;
+    }
+  }
+
+  /* =========================
+     MOBILE TOGGLE
+  ========================= */
+
+  &__toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $icon-primary-dark-default;
+
+    @media (max-width: 768px) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  /* =========================
+     MOBILE MENU
+  ========================= */
+
+  &__menu--mobile {
+    display: none;
+
+    @media (max-width: 768px) {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+
+      background-color: $bg-white-default;
+      border-bottom: 1px solid $border-medium-default;
+
+      flex-direction: column;
+      padding: 1rem;
+      gap: 1rem;
+
+      display: flex;
+    }
+  }
+}

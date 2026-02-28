@@ -1,0 +1,176 @@
+<a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+
+<header class="navbar" role="banner">
+  <div class="container navbar__container">
+    <a class="navbar__brand" routerLink="/" (click)="onNavigate()" aria-label="Ir a inicio">
+      <img
+        ngSrc="/assets/images/header-logo.svg"
+        alt="Waveless Logo"
+        width="145"
+        height="32"
+        priority
+        class="navbar__logo"
+      />
+    </a>
+
+    <nav class="navbar__nav" aria-label="Navegacion principal">
+      <a
+        class="navbar__tab"
+        routerLink="/"
+        (click)="onNavigate()"
+        routerLinkActive="navbar__tab--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <span class="navbar__icon" aria-hidden="true">
+          <img
+            ngSrc="/assets/images/icons/icono_adventure.svg"
+            width="24"
+            height="24"
+            alt=""
+            aria-hidden="true"
+          />
+        </span>
+        <span class="navbar__label">Aventura</span>
+      </a>
+
+      <a
+        class="navbar__tab"
+        routerLink="/destinos"
+        routerLinkActive="navbar__tab--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <span class="navbar__icon" aria-hidden="true">
+          <img
+            ngSrc="/assets/images/icons/icono_destination.svg"
+            width="24"
+            height="24"
+            alt=""
+            aria-hidden="true"
+          />
+        </span>
+        <span class="navbar__label">Destinos</span>
+      </a>
+
+      <a
+        class="navbar__tab"
+        routerLink="/alojamiento"
+        routerLinkActive="navbar__tab--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <span class="navbar__icon" aria-hidden="true">
+          <img
+            ngSrc="/assets/images/icons/icono_hostage.svg"
+            width="24"
+            height="24"
+            alt=""
+            aria-hidden="true"
+          />
+        </span>
+        <span class="navbar__label">Alojamiento</span>
+      </a>
+
+      <a
+        class="navbar__tab"
+        routerLink="/sobre-nosotros"
+        routerLinkActive="navbar__tab--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <span class="navbar__icon navbar__icon--hidden" aria-hidden="true"></span>
+        <span class="navbar__label">Sobre nosotros</span>
+      </a>
+
+      <a class="navbar__cta button button--primary button--md" routerLink="/" (click)="onNavigate()">
+        Reserva
+      </a>
+    </nav>
+
+    <button
+      #burgerButton
+      id="nav-burger"
+      type="button"
+      class="navbar__burger"
+      (click)="toggle()"
+      [attr.aria-label]="isMobileOpen() ? 'Cerrar menu' : 'Abrir menu'"
+      [attr.aria-expanded]="isMobileOpen()"
+      aria-controls="mobile-nav"
+    >
+      &#9776;
+    </button>
+  </div>
+</header>
+
+@if (isMobileOpen()) {
+  <div
+    #mobileDialog
+    id="mobile-nav"
+    class="mobile-nav"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="mobile-nav-title"
+    (click)="onOverlayClick($event)"
+    (keydown)="onMobileKeydown($event)"
+    tabindex="-1"
+  >
+    <div class="mobile-nav__panel">
+      <div class="mobile-nav__header">
+        <span id="mobile-nav-title" class="mobile-nav__title">Menu</span>
+        <button
+          #mobileClose
+          type="button"
+          class="mobile-nav__close"
+          (click)="close()"
+          aria-label="Cerrar menu"
+        >
+          &#10005;
+        </button>
+      </div>
+
+      <nav class="mobile-nav__links" aria-label="Navegacion movil">
+        <a
+          class="mobile-nav__link"
+          routerLink="/"
+          routerLinkActive="mobile-nav__link--active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="onNavigate()"
+        >
+          Aventura
+        </a>
+
+        <a
+          class="mobile-nav__link"
+          routerLink="/destinos"
+          routerLinkActive="mobile-nav__link--active"
+          (click)="onNavigate()"
+        >
+          Destinos
+        </a>
+
+        <a
+          class="mobile-nav__link"
+          routerLink="/alojamiento"
+          routerLinkActive="mobile-nav__link--active"
+          (click)="onNavigate()"
+        >
+          Alojamiento
+        </a>
+
+        <a
+          class="mobile-nav__link"
+          routerLink="/sobre-nosotros"
+          routerLinkActive="mobile-nav__link--active"
+          (click)="onNavigate()"
+        >
+          Sobre nosotros
+        </a>
+
+        <a
+          class="mobile-nav__cta button button--primary button--md"
+          routerLink="/destinos"
+          (click)="onNavigate()"
+        >
+          Reserva
+        </a>
+      </nav>
+    </div>
+  </div>
+}

@@ -1,0 +1,94 @@
+<app-hero-slider [slides]="heroSlides()" />
+
+<section class="section section--home">
+  <div class="container-lg home-layout">
+    <aside class="home-layout__filters" aria-label="Filtrar mi busqueda">
+      <app-filters-panel
+        class="home-layout__filters-panel"
+        [initial]="filters()"
+        (filtersChange)="onFiltersChange($event)"
+      />
+    </aside>
+
+    <div class="home-layout__content">
+      <div class="home-layout__intro">
+        <h2 class="home-layout__title">Vive tus propias aventuras</h2>
+        <p class="home-layout__subtitle">
+          Para los que les gusta explorar y conocer mundo sin complejos
+        </p>
+        <button
+          type="button"
+          class="home-layout__filters-toggle"
+          aria-controls="home-filters-drawer"
+          aria-haspopup="dialog"
+          [attr.aria-expanded]="isFiltersOpen()"
+          [attr.aria-label]="isFiltersOpen() ? 'Cerrar menu de filtros' : 'Abrir menu de filtros'"
+          (click)="openFilters()"
+        >
+          <span class="home-layout__filters-toggle-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M4 7h16M7 12h10M10 17h4" />
+            </svg>
+          </span>
+          <span>Ver filtros</span>
+        </button>
+      </div>
+
+      <div class="home-layout__grid">
+        @for (trip of tripsForLayout(); track trip.trackId; let i = $index) {
+          @if (i === 0) {
+            <h3 class="home-layout__section-title home-layout__section-title--grid">Asia</h3>
+          }
+
+          @if (i === 3) {
+            <h3
+              class="home-layout__section-title home-layout__section-title--grid home-layout__section-title--spaced"
+            >
+              Asia
+            </h3>
+          }
+
+          <app-card
+            [description]="trip.description"
+            [durationBucket]="trip.durationBucket"
+            [title]="trip.title"
+            [price]="formatPrice(trip.priceValue)"
+            [image]="trip.image"
+          />
+        }
+      </div>
+    </div>
+  </div>
+
+  @if (isFiltersOpen()) {
+    <div
+      #filtersDialog
+      class="home-layout__filters-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="home-filters-title"
+      (click)="onFiltersOverlayClick($event)"
+      (keydown)="onFiltersKeydown($event)"
+      tabindex="-1"
+    >
+      <aside id="home-filters-drawer" class="home-layout__filters-drawer" aria-label="Filtrar mi busqueda">
+        <h3 id="home-filters-title" class="u-sr-only">Menu de filtros</h3>
+        <button
+          #filtersClose
+          type="button"
+          class="home-layout__filters-close"
+          aria-label="Cerrar menu de filtros"
+          (click)="closeFilters()"
+        >
+          &times;
+        </button>
+
+        <app-filters-panel
+          class="home-layout__filters-panel home-layout__filters-panel--drawer"
+          [initial]="filters()"
+          (filtersChange)="onFiltersChange($event)"
+        />
+      </aside>
+    </div>
+  }
+</section>

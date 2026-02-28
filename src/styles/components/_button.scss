@@ -1,0 +1,114 @@
+@use '../tokens/components' as *;
+
+/* =========================================================
+   BUTTON COMPONENT
+========================================================= */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  border-radius: $button-radius;
+  font-weight: 600;
+  border: 1px solid transparent;
+
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease;
+
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  /* =========================
+     SIZES
+  ========================= */
+
+  &--sm {
+    padding: $button-padding-sm;
+    font-size: $button-font-sm;
+  }
+
+  &--md {
+    padding: $button-padding-md;
+    font-size: $button-font-md;
+  }
+
+  &--lg {
+    padding: $button-padding-lg;
+    font-size: $button-font-lg;
+  }
+
+  /* =========================
+     PRIMARY
+  ========================= */
+
+  &--primary {
+    background-color: $button-primary-bg-default;
+    color: $button-primary-text-default;
+    border-color: $button-primary-border-default;
+
+    &:hover:not(:disabled) {
+      background-color: $button-primary-bg-hover;
+      color: $button-primary-text-hover;
+      border-color: $button-primary-border-hover;
+    }
+
+    &:disabled {
+      background-color: $button-primary-bg-disabled;
+      color: $button-primary-text-disabled;
+      border-color: $button-primary-border-disabled;
+    }
+  }
+
+  /* =========================
+     ACCENT
+  ========================= */
+
+  &--accent {
+    background-color: $button-accent-bg-default;
+    color: $button-accent-text-default;
+    border-color: $button-accent-border-default;
+
+    &:hover:not(:disabled) {
+      background-color: $button-accent-bg-hover;
+      color: $button-accent-text-hover;
+      border-color: $button-accent-border-hover;
+    }
+
+    &:disabled {
+      background-color: $button-accent-bg-disabled;
+      color: $button-accent-text-disabled;
+      border-color: $button-accent-border-disabled;
+    }
+  }
+
+  /* =========================
+     SECONDARY (Outlined)
+  ========================= */
+
+  &--secondary {
+    background-color: $button-secondary-bg-default;
+    color: $button-secondary-text-default;
+    border-color: $button-secondary-border-default;
+
+    &:hover:not(:disabled) {
+      background-color: $button-secondary-bg-hover;
+      color: $button-secondary-text-hover;
+      border-color: $button-secondary-border-hover;
+    }
+
+    &:disabled {
+      background-color: $button-secondary-bg-disabled;
+      color: $button-secondary-text-disabled;
+      border-color: $button-secondary-border-disabled;
+    }
+  }
+}

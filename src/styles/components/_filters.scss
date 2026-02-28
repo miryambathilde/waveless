@@ -1,0 +1,117 @@
+@use '../tokens/components' as *;
+@use '../tokens/semantic' as *;
+
+/* =========================================================
+   FILTERS PANEL
+========================================================= */
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  padding: 1.5rem;
+  background-color: $bg-white-default;
+
+  /* =========================
+     SECTION
+  ========================= */
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid $divisor-light;
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+
+  /* =========================
+     SECTION TITLE
+  ========================= */
+
+  &__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $fg-on-light-default;
+    vertical-align: middle;
+  }
+
+  /* =========================
+     FILTER ITEM (collapsible header)
+  ========================= */
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 0.875rem;
+    font-weight: 500;
+
+    color: $fg-on-light-default;
+    cursor: pointer;
+
+    transition: color 200ms ease;
+
+    &:hover {
+      color: $fg-secondary-dark-default;
+    }
+
+    &--open {
+      color: $fg-secondary-dark-default;
+    }
+  }
+
+  &__chevron {
+    transition:
+      transform 200ms ease,
+      color 200ms ease;
+    color: $icon-primary-dark-default;
+
+    .filters__item-header:hover & {
+      color: $icon-primary-dark-hover;
+    }
+
+    .filters__item-header--open & {
+      transform: rotate(180deg);
+      color: $icon-secondary-dark-default;
+    }
+  }
+
+  /* =========================
+     OPTIONS LIST
+  ========================= */
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* =========================
+     LINK (clear filters)
+  ========================= */
+
+  &__link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $fg-link-default;
+    cursor: pointer;
+
+    &:hover {
+      color: $fg-link-hover;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@use '../tokens/components' as *;
+@use '../tokens/semantic' as *;
+
+/* =========================================================
+   TAG COMPONENT
+========================================================= */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 999px;
+  line-height: 1;
+  white-space: nowrap;
+  user-select: none;
+
+  font-weight: 600;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+
+  &--sm {
+    padding: 0.2rem 0.55rem;
+    font-size: 0.75rem;
+  }
+
+  &--md {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.875rem;
+  }
+
+  /* Variants aligned with TagComponent */
+  &--accent {
+    background-color: $bg-secondary-medium-default;
+    color: $fg-on-secondary-medium-default;
+  }
+
+  &--neutral {
+    background-color: $bg-white-hover; /* un neutral suave */
+    color: $fg-primary-dark-default;
+  }
+}

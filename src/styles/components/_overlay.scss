@@ -1,0 +1,98 @@
+@use '../tokens/components' as *;
+
+/* =========================================================
+   OVERLAY / MODAL COMPONENT
+========================================================= */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1rem;
+
+  background-color: $overlay-alpha-bg;
+
+  /* =========================
+     PANEL
+  ========================= */
+
+  &__panel {
+    width: 100%;
+    max-width: 960px;
+    max-height: 90vh;
+
+    background-color: $overlay-bg-default;
+    border: 1px solid $overlay-border-default;
+    border-radius: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* =========================
+     HEADER
+  ========================= */
+
+  &__header {
+    padding: 1rem 1.25rem;
+    background-color: $overlay-top-bar-bg;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: $overlay-title-default;
+  }
+
+  &__close {
+    cursor: pointer;
+  }
+
+  /* =========================
+     BODY
+  ========================= */
+
+  &__body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex: 1;
+    color: $overlay-text-default;
+  }
+
+  /* =========================
+     FOOTER
+  ========================= */
+
+  &__footer {
+    padding: 1rem 1.25rem;
+    background-color: $overlay-bottom-bar-bg;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__price {
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: $overlay-price-default;
+  }
+
+  &__link {
+    color: $overlay-link-default;
+
+    &:hover {
+      color: $overlay-link-hover;
+    }
+  }
+}
