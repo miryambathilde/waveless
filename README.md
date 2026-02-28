@@ -194,7 +194,7 @@ docs/
 
 ```bash
 git clone 'https://github.com/miryambathilde/waveless'
-cd angular21-wave
+cd waveless
 ```
 
 1. Instalar dependencias:
