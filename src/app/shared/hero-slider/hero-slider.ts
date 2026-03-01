@@ -46,6 +46,8 @@ export class HeroSliderComponent {
   private intervalId: number | null = null;
 
   constructor() {
+    this.destroyRef.onDestroy(() => this.clearTimer());
+
     effect(() => {
       // reinicia autoplay cuando cambian slides / pausa / ms
       this.clearTimer();
@@ -56,8 +58,19 @@ export class HeroSliderComponent {
 
       const ms = this.autoplayMs();
       this.intervalId = globalThis.setInterval(() => this.next(), ms);
+    });
 
-      this.destroyRef.onDestroy(() => this.clearTimer());
+    effect(() => {
+      const slideCount = this.slides().length;
+      if (slideCount === 0) {
+        this.index.set(0);
+        return;
+      }
+
+      const current = this.index();
+      if (current >= slideCount) {
+        this.index.set(slideCount - 1);
+      }
     });
   }
 

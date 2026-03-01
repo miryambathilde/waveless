@@ -5,6 +5,7 @@
   (focusin)="pause()"
   (focusout)="resume()"
   aria-label="Carrusel destacado"
+  aria-roledescription="carrusel"
 >
   @if (activeSlide(); as slide) {
     <div class="hero-slider__bg" [style.--bg]="'url(' + slide.imageUrl + ')'"></div>
@@ -19,15 +20,15 @@
           {{ slide.ctaLabel }}
         </a>
 
-        <div class="hero-slider__dots" aria-label="Paginacion del carrusel">
+        <div class="hero-slider__dots" role="group" aria-label="Paginaci&oacute;n del carrusel">
           @for (s of slides(); track s.id; let i = $index) {
             <button
               type="button"
               class="hero-slider__dot"
               [class.hero-slider__dot--active]="i === index()"
               (click)="goTo(i)"
-              [attr.aria-label]="'Ir al slide ' + (i + 1)"
-              [attr.aria-current]="i === index() ? 'true' : null"
+              [attr.aria-label]="'Mostrar diapositiva ' + (i + 1)"
+              [attr.aria-pressed]="i === index()"
             ></button>
           }
         </div>
@@ -37,14 +38,14 @@
         type="button"
         class="hero-slider__arrow hero-slider__arrow--left"
         (click)="prev()"
-        aria-label="Anterior"
+        aria-label="Diapositiva anterior"
       ></button>
 
       <button
         type="button"
         class="hero-slider__arrow hero-slider__arrow--right"
         (click)="next()"
-        aria-label="Siguiente"
+        aria-label="Diapositiva siguiente"
       ></button>
     </div>
   }

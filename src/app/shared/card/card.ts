@@ -1,16 +1,19 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   ElementRef,
+  NgZone,
   ViewChild,
   computed,
+  effect,
   inject,
   input,
   signal,
 } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TagComponent } from '@shared/tag/tag';
-import { PopoverPriceComponent } from '@shared/popover-price/popover-price';
+import { PopoverPriceComponent, type PopoverPriceItem } from '@shared/popover-price/popover-price';
 import { CardPopoverCoordinatorService } from '@shared/services/ui/card-popover-coordinator.service';
 
 @Component({
@@ -22,8 +25,6 @@ import { CardPopoverCoordinatorService } from '@shared/services/ui/card-popover-
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.card--popover-open]': 'isPopoverOpen()',
-    '(window:resize)': 'repositionPopover()',
-    '(window:scroll)': 'repositionPopover()',
   },
 })
 export class CardComponent {
@@ -34,11 +35,22 @@ export class CardComponent {
   durationBucket = input<string | undefined>(undefined);
   price = input<string>('');
   image = input<string>('');
+  tag = input<string>('Quads');
 
-  protected readonly isPopoverOpen = computed(
+  readonly isPopoverOpen = computed(
     () => this.popoverCoordinator.openCardId() === this.cardId,
   );
-  protected readonly popoverPosition = signal({ left: 0, top: 0 });
+  readonly daysLabel = computed(() => {
+    const duration = this.durationBucket();
+    return duration ? `${duration} d\u00EDas` : '';
+  });
+  readonly popoverPosition = signal({ left: 0, top: 0 });
+  readonly priceBreakdownItems: PopoverPriceItem[] = [
+    { label: 'Precio antes de impuestos', value: '1.124,00 \u20AC' },
+    { label: 'Impuesto', value: '4,43 \u20AC' },
+    { label: 'Lorem ipsum', value: '150,42 \u20AC' },
+  ];
+  readonly priceBreakdownTotal = '2.455,00 \u20AC';
 
   @ViewChild('breakdownButton') private readonly breakdownButton?: ElementRef<HTMLButtonElement>;
   @ViewChild('popoverHost', { read: ElementRef })
@@ -46,10 +58,35 @@ export class CardComponent {
 
   private readonly hostEl = inject(ElementRef<HTMLElement>);
   private readonly popoverCoordinator = inject(CardPopoverCoordinatorService);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly ngZone = inject(NgZone);
   private readonly viewportPadding = 16;
   private readonly popoverGap = 8;
   private readonly cardId = `card-${CardComponent.nextCardId++}`;
-  protected readonly popoverId = `${this.cardId}-popover`;
+  readonly popoverId = `${this.cardId}-popover`;
+  private rafId: number | null = null;
+
+  constructor() {
+    effect((onCleanup) => {
+      if (!this.isPopoverOpen()) return;
+
+      this.schedulePopoverReposition();
+
+      const onViewportChange = () => this.schedulePopoverReposition();
+      this.ngZone.runOutsideAngular(() => {
+        window.addEventListener('resize', onViewportChange, { passive: true });
+        window.addEventListener('scroll', onViewportChange, { passive: true });
+      });
+
+      onCleanup(() => {
+        window.removeEventListener('resize', onViewportChange);
+        window.removeEventListener('scroll', onViewportChange);
+        this.cancelScheduledReposition();
+      });
+    });
+
+    this.destroyRef.onDestroy(() => this.cancelScheduledReposition());
+  }
 
   togglePopover(): void {
     const nextState = !this.isPopoverOpen();
@@ -108,6 +145,17 @@ export class CardComponent {
   }
 
   private schedulePopoverReposition(): void {
-    requestAnimationFrame(() => this.repositionPopover());
+    if (this.rafId != null) return;
+
+    this.rafId = requestAnimationFrame(() => {
+      this.rafId = null;
+      this.repositionPopover();
+    });
+  }
+
+  private cancelScheduledReposition(): void {
+    if (this.rafId == null) return;
+    cancelAnimationFrame(this.rafId);
+    this.rafId = null;
   }
 }

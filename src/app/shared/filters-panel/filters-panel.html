@@ -1,6 +1,6 @@
 <div class="filters">
   <div class="filters__header">
-    <p class="filters__title">Filtrar mi b&uacute;squeda</p>
+    <h2 class="filters__title">Filtrar mi b&uacute;squeda</h2>
   </div>
 
   <details class="filters__block">
@@ -38,8 +38,64 @@
       </span>
     </summary>
     <div class="filters__body">
-      <p class="filters__hint">Selecciona una regi&oacute;n o destino</p>
-      <button type="button" class="filters__more">Ver 21 m&aacute;s</button>
+      <fieldset class="filters__fieldset">
+        <legend class="u-sr-only">Opciones de destino</legend>
+
+        <label class="filters__check">
+          <input
+            class="filters__check-input"
+            type="checkbox"
+            [checked]="isDestinationSelected('Tailandia')"
+            (change)="toggleDestination('Tailandia')"
+          />
+          <span class="filters__check-box" aria-hidden="true"></span>
+          <span class="filters__check-label">Tailandia</span>
+        </label>
+
+        <label class="filters__check">
+          <input
+            class="filters__check-input"
+            type="checkbox"
+            [checked]="isDestinationSelected('Marruecos')"
+            (change)="toggleDestination('Marruecos')"
+          />
+          <span class="filters__check-box" aria-hidden="true"></span>
+          <span class="filters__check-label">Marruecos</span>
+        </label>
+
+        <label class="filters__check">
+          <input
+            class="filters__check-input"
+            type="checkbox"
+            [checked]="isDestinationSelected('Japon')"
+            (change)="toggleDestination('Japon')"
+          />
+          <span class="filters__check-box" aria-hidden="true"></span>
+          <span class="filters__check-label">Japon</span>
+        </label>
+
+        <label class="filters__check">
+          <input
+            class="filters__check-input"
+            type="checkbox"
+            [checked]="isDestinationSelected('Peru')"
+            (change)="toggleDestination('Peru')"
+          />
+          <span class="filters__check-box" aria-hidden="true"></span>
+          <span class="filters__check-label">Peru</span>
+        </label>
+
+        <label class="filters__check">
+          <input
+            class="filters__check-input"
+            type="checkbox"
+            [checked]="isDestinationSelected('Indonesia')"
+            (change)="toggleDestination('Indonesia')"
+          />
+          <span class="filters__check-box" aria-hidden="true"></span>
+          <span class="filters__check-label">Indonesia</span>
+        </label>
+      </fieldset>
     </div>
   </details>
 
@@ -83,11 +139,21 @@
         <legend class="u-sr-only">Opciones de aventura</legend>
 
         <label class="filters__check">
-          <input class="filters__check-input" type="checkbox" />
+          <input
+            class="filters__check-input"
+            type="checkbox"
+            [checked]="isAdventureSelected('Quads')"
+            (change)="toggleAdventure('Quads')"
+          />
           <span class="filters__check-box" aria-hidden="true"></span>
           <span class="filters__check-label">
             Quads
-            <span class="filters__info" tabindex="0">
+            <span
+              class="filters__info"
+              tabindex="0"
+              role="button"
+              aria-label="M&aacute;s informaci&oacute;n sobre Quads"
+            >
               <img src="/assets/images/icons/icon-info.svg" alt="" aria-hidden="true" />
               <span class="filters__tooltip">Lorem ipsum</span>
             </span>
@@ -95,11 +161,21 @@
         </label>
 
         <label class="filters__check">
-          <input class="filters__check-input" type="checkbox" checked />
+          <input
+            class="filters__check-input"
+            type="checkbox"
+            [checked]="isAdventureSelected('Parapente')"
+            (change)="toggleAdventure('Parapente')"
+          />
           <span class="filters__check-box" aria-hidden="true"></span>
           <span class="filters__check-label">
             Parapente
-            <span class="filters__info" tabindex="0">
+            <span
+              class="filters__info"
+              tabindex="0"
+              role="button"
+              aria-label="M&aacute;s informaci&oacute;n sobre Parapente"
+            >
               <img src="/assets/images/icons/icon-info.svg" alt="" aria-hidden="true" />
               <span class="filters__tooltip">Lorem ipsum</span>
             </span>
@@ -107,11 +183,21 @@
         </label>
 
         <label class="filters__check">
-          <input class="filters__check-input" type="checkbox" />
+          <input
+            class="filters__check-input"
+            type="checkbox"
+            [checked]="isAdventureSelected('Rafting')"
+            (change)="toggleAdventure('Rafting')"
+          />
           <span class="filters__check-box" aria-hidden="true"></span>
           <span class="filters__check-label">
             Rafting
-            <span class="filters__info" tabindex="0">
+            <span
+              class="filters__info"
+              tabindex="0"
+              role="button"
+              aria-label="M&aacute;s informaci&oacute;n sobre Rafting"
+            >
               <img src="/assets/images/icons/icon-info.svg" alt="" aria-hidden="true" />
               <span class="filters__tooltip">Lorem ipsum</span>
             </span>
@@ -119,11 +205,21 @@
         </label>
 
         <label class="filters__check">
-          <input class="filters__check-input" type="checkbox" checked />
+          <input
+            class="filters__check-input"
+            type="checkbox"
+            [checked]="isAdventureSelected('Explora')"
+            (change)="toggleAdventure('Explora')"
+          />
           <span class="filters__check-box" aria-hidden="true"></span>
           <span class="filters__check-label">
             Explora
-            <span class="filters__info" tabindex="0">
+            <span
+              class="filters__info"
+              tabindex="0"
+              role="button"
+              aria-label="M&aacute;s informaci&oacute;n sobre Explora"
+            >
               <img src="/assets/images/icons/icon-info.svg" alt="" aria-hidden="true" />
               <span class="filters__tooltip">Lorem ipsum</span>
             </span>
@@ -131,11 +227,21 @@
         </label>
 
         <label class="filters__check">
-          <input class="filters__check-input" type="checkbox" />
+          <input
+            class="filters__check-input"
+            type="checkbox"
+            [checked]="isAdventureSelected('Buceo')"
+            (change)="toggleAdventure('Buceo')"
+          />
           <span class="filters__check-box" aria-hidden="true"></span>
           <span class="filters__check-label">
             Buceo
-            <span class="filters__info" tabindex="0">
+            <span
+              class="filters__info"
+              tabindex="0"
+              role="button"
+              aria-label="M&aacute;s informaci&oacute;n sobre Buceo"
+            >
               <img src="/assets/images/icons/icon-info.svg" alt="" aria-hidden="true" />
               <span class="filters__tooltip">Lorem ipsum</span>
             </span>
@@ -143,11 +249,21 @@
         </label>
 
         <label class="filters__check">
-          <input class="filters__check-input" type="checkbox" />
+          <input
+            class="filters__check-input"
+            type="checkbox"
+            [checked]="isAdventureSelected('Paracaidas')"
+            (change)="toggleAdventure('Paracaidas')"
+          />
           <span class="filters__check-box" aria-hidden="true"></span>
           <span class="filters__check-label">
             Paraca&iacute;das
-            <span class="filters__info" tabindex="0">
+            <span
+              class="filters__info"
+              tabindex="0"
+              role="button"
+              aria-label="M&aacute;s informaci&oacute;n sobre Paraca&iacute;das"
+            >
               <img src="/assets/images/icons/icon-info.svg" alt="" aria-hidden="true" />
               <span class="filters__tooltip">Lorem ipsum</span>
             </span>
@@ -155,11 +271,21 @@
         </label>
 
         <label class="filters__check">
-          <input class="filters__check-input" type="checkbox" />
+          <input
+            class="filters__check-input"
+            type="checkbox"
+            [checked]="isAdventureSelected('Snowboard')"
+            (change)="toggleAdventure('Snowboard')"
+          />
           <span class="filters__check-box" aria-hidden="true"></span>
           <span class="filters__check-label">
             Snowboard
-            <span class="filters__info" tabindex="0">
+            <span
+              class="filters__info"
+              tabindex="0"
+              role="button"
+              aria-label="M&aacute;s informaci&oacute;n sobre Snowboard"
+            >
               <img src="/assets/images/icons/icon-info.svg" alt="" aria-hidden="true" />
               <span class="filters__tooltip">Lorem ipsum</span>
             </span>
@@ -167,11 +293,21 @@
         </label>
 
         <label class="filters__check">
-          <input class="filters__check-input" type="checkbox" />
+          <input
+            class="filters__check-input"
+            type="checkbox"
+            [checked]="isAdventureSelected('Surf')"
+            (change)="toggleAdventure('Surf')"
+          />
           <span class="filters__check-box" aria-hidden="true"></span>
           <span class="filters__check-label">
             Surf
-            <span class="filters__info" tabindex="0">
+            <span
+              class="filters__info"
+              tabindex="0"
+              role="button"
+              aria-label="M&aacute;s informaci&oacute;n sobre Surf"
+            >
               <img src="/assets/images/icons/icon-info.svg" alt="" aria-hidden="true" />
               <span class="filters__tooltip">Lorem ipsum</span>
             </span>
@@ -272,6 +408,7 @@
             [value]="priceMin() ?? ''"
             (input)="setPriceMin($any($event.target).value)"
             placeholder="0"
+            min="0"
           />
         </div>
       </div>
@@ -290,6 +427,7 @@
             [value]="priceMax() ?? ''"
             (input)="setPriceMax($any($event.target).value)"
             placeholder="1000"
+            min="0"
           />
         </div>
       </div>

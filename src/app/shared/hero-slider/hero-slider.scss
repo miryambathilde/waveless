@@ -8,10 +8,10 @@
 
 .hero-slider {
   position: relative;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  height: 400px;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  height: 25rem;
   overflow: hidden;
   background: $bg-black-default;
   z-index: 0;
@@ -46,8 +46,9 @@
   &__wrap {
     position: relative;
     height: 100%;
-    width: min(1440px, 100%);
-    margin-inline: auto;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
   }
 
   &__center {
@@ -56,49 +57,49 @@
     display: grid;
     place-content: center;
     text-align: center;
-    padding-inline: 24px;
+    padding-inline: 1.5rem;
     color: $fg-on-primary-dark-default;
   }
 
   &__title {
     margin: 0;
     font-weight: 700;
-    font-size: 30px;
-    line-height: 34px;
+    font-size: 1.875rem;
+    line-height: 2.125rem;
     letter-spacing: 0;
     color: unset;
     text-shadow: $shadow-text-hero;
   }
 
   &__subtitle {
-    margin: 10px auto 0;
-    max-width: 500px;
-    font-size: 20px;
-    line-height: 26px;
+    margin: 0.625rem auto 0;
+    max-width: 31.25rem;
+    font-size: 1.25rem;
+    line-height: 1.625rem;
     opacity: 0.95;
     text-shadow: $shadow-text-hero;
   }
 
   &__cta {
-    margin: 18px auto 0;
+    margin: 1.125rem auto 0;
     text-decoration: none;
-    border-radius: 999px;
-    padding-inline: 28px;
+    border-radius: 62.4375rem;
+    padding-inline: 1.75rem;
   }
 
   &__dots {
     position: absolute;
     left: 50%;
-    bottom: 14px;
+    bottom: 0.875rem;
     transform: translateX(-50%);
     display: flex;
-    gap: 8px;
+    gap: 0.5rem;
     align-items: center;
   }
 
   &__dot {
-    width: 10px;
-    height: 10px;
+    width: 0.625rem;
+    height: 0.625rem;
     border: 0;
     padding: 0;
     background: transparent;
@@ -131,10 +132,10 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     border: 0;
-    border-radius: 2px;
+    border-radius: 0.125rem;
     cursor: pointer;
 
     &:focus-visible {
@@ -144,36 +145,51 @@
 
     &--left {
       left: 0;
-      background-image: url('/assets/images/icons/arrow-back.svg');
+      background-image: url('/assets/images/icons/arrow-next.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 2.5rem 2.5rem;
+      transform: translateY(-50%) rotate(180deg);
     }
 
     &--right {
       right: 0;
       background-image: url('/assets/images/icons/arrow-next.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 2.5rem 2.5rem;
+      transform: translateY(-50%);
     }
   }
 }
 
 @media (max-width: 900px) {
   .hero-slider {
-    height: 320px;
+    height: 20rem;
 
     &__title {
-      font-size: 32px;
+      font-size: 2rem;
     }
   }
 }
 
 @media (max-width: 480px) {
   .hero-slider {
-    height: 280px;
+    height: 17.5rem;
 
     &__title {
-      font-size: 26px;
+      font-size: 1.625rem;
     }
 
     &__subtitle {
-      font-size: 14px;
+      font-size: 0.875rem;
+    }
+
+    &__arrow {
+      &--left,
+      &--right {
+        background-size: 2.125rem 2.125rem;
+      }
     }
   }
 }

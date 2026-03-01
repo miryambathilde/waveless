@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   DOCUMENT,
+  DestroyRef,
   effect,
   HostListener,
   inject,
@@ -20,7 +21,10 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class Navbar {
   private readonly doc = inject(DOCUMENT);
+  private readonly destroyRef = inject(DestroyRef);
   private readonly mobileBreakpoint = 900;
+  private readonly mobileMediaQuery =
+    this.doc.defaultView?.matchMedia(`(max-width: ${this.mobileBreakpoint}px)`) ?? null;
   private restoreFocusTo: HTMLElement | null = null;
 
   protected readonly isMobileOpen = signal(false);
@@ -38,6 +42,19 @@ export class Navbar {
       this.restoreFocusTo?.focus();
       this.restoreFocusTo = null;
     });
+
+    if (this.mobileMediaQuery) {
+      const onViewportModeChange = (event: MediaQueryListEvent) => {
+        if (!event.matches && this.isMobileOpen()) {
+          this.close();
+        }
+      };
+
+      this.mobileMediaQuery.addEventListener('change', onViewportModeChange);
+      this.destroyRef.onDestroy(() =>
+        this.mobileMediaQuery?.removeEventListener('change', onViewportModeChange),
+      );
+    }
   }
 
   toggle(): void {
@@ -55,13 +72,5 @@ export class Navbar {
   @HostListener('document:keydown.escape')
   onEscape(): void {
     this.close();
-  }
-
-  @HostListener('window:resize')
-  onResize(): void {
-    const viewportWidth = this.doc.defaultView?.innerWidth ?? 0;
-    if (viewportWidth > this.mobileBreakpoint && this.isMobileOpen()) {
-      this.close();
-    }
   }
 }

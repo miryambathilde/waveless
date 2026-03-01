@@ -1,8 +1,8 @@
-<app-hero-slider [slides]="heroSlides()" />
+<app-hero-slider [slides]="heroSlides" />
 
-<section class="section section--home">
+<section class="section section--home" aria-labelledby="home-page-title">
   <div class="container-lg home-layout">
-    <aside class="home-layout__filters" aria-label="Filtrar mi busqueda">
+    <aside class="home-layout__filters" aria-label="Filtrar mi b&uacute;squeda">
       <app-filters-panel
         class="home-layout__filters-panel"
         [initial]="filters()"
@@ -10,9 +10,9 @@
       />
     </aside>
 
-    <div class="home-layout__content">
+    <section class="home-layout__content" aria-labelledby="home-page-title">
       <div class="home-layout__intro">
-        <h2 class="home-layout__title">Vive tus propias aventuras</h2>
+        <h1 id="home-page-title" class="home-layout__title">Vive tus propias aventuras</h1>
         <p class="home-layout__subtitle">
           Para los que les gusta explorar y conocer mundo sin complejos
         </p>
@@ -35,46 +35,53 @@
       </div>
 
       <div class="home-layout__grid">
-        @for (trip of tripsForLayout(); track trip.trackId; let i = $index) {
+        @for (item of tripsForLayout(); track item.trackId; let i = $index) {
           @if (i === 0) {
-            <h3 class="home-layout__section-title home-layout__section-title--grid">Asia</h3>
+            <h2 class="home-layout__section-title home-layout__section-title--grid">Asia</h2>
           }
 
           @if (i === 3) {
-            <h3
+            <h2
               class="home-layout__section-title home-layout__section-title--grid home-layout__section-title--spaced"
             >
-              Asia
-            </h3>
+              M&aacute;s viajes por Asia
+            </h2>
           }
 
           <app-card
-            [description]="trip.description"
-            [durationBucket]="trip.durationBucket"
-            [title]="trip.title"
-            [price]="formatPrice(trip.priceValue)"
-            [image]="trip.image"
+            [description]="item.trip.description"
+            [durationBucket]="item.trip.durationBucket"
+            [title]="item.trip.title"
+            [tag]="item.trip.adventure"
+            [price]="formatPrice(item.trip.priceValue)"
+            [image]="item.trip.image"
           />
         }
       </div>
-    </div>
+    </section>
   </div>
 
   @if (isFiltersOpen()) {
     <dialog
       #filtersDialog
+      open
       class="home-layout__filters-overlay"
+      aria-modal="true"
       aria-labelledby="home-filters-title"
       (click)="onFiltersOverlayClick($event)"
       (keydown)="onFiltersKeydown($event)"
     >
-      <aside id="home-filters-drawer" class="home-layout__filters-drawer" aria-label="Filtrar mi busqueda">
-        <h3 id="home-filters-title" class="u-sr-only">Menu de filtros</h3>
+      <aside
+        id="home-filters-drawer"
+        class="home-layout__filters-drawer"
+        aria-label="Filtrar mi b&uacute;squeda"
+      >
+        <h3 id="home-filters-title" class="u-sr-only">Men&uacute; de filtros</h3>
         <button
           #filtersClose
           type="button"
           class="home-layout__filters-close"
-          aria-label="Cerrar menu de filtros"
+          aria-label="Cerrar men&uacute; de filtros"
           (click)="closeFilters()"
         >
           &times;

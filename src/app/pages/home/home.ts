@@ -13,6 +13,8 @@ import { CardComponent } from '@shared/card/card';
 import {
   FiltersPanelComponent,
   FiltersState,
+  TripAdventure,
+  TripDestination,
   TripDuration,
 } from '@shared/filters-panel/filters-panel';
 import { HeroSlide, HeroSliderComponent } from '@shared/hero-slider/hero-slider';
@@ -23,10 +25,13 @@ type Trip = {
   description: string;
   priceValue: number;
   image: string;
+  destination: TripDestination;
+  adventure: TripAdventure;
   durationBucket?: TripDuration;
 };
 
-type TripForLayout = Trip & {
+type TripForLayout = {
+  trip: Trip;
   trackId: string;
 };
 
@@ -47,6 +52,8 @@ export class HomePage {
   private restoreFocusTo: HTMLElement | null = null;
 
   readonly filters = signal<FiltersState>({
+    destinations: [],
+    adventures: [],
     durations: [],
     priceMin: null,
     priceMax: null,
@@ -56,7 +63,7 @@ export class HomePage {
   protected readonly filtersDialog = viewChild<ElementRef<HTMLElement>>('filtersDialog');
   protected readonly filtersClose = viewChild<ElementRef<HTMLButtonElement>>('filtersClose');
 
-  readonly heroSlides = signal<HeroSlide[]>([
+  readonly heroSlides: HeroSlide[] = [
     {
       id: 'australia',
       title: 'Ruta por Australia',
@@ -78,39 +85,87 @@ export class HomePage {
       ctaLabel: 'Mas informacion',
       imageUrl: 'assets/images/backgrounds/fondo-hero.png',
     },
-  ]);
+  ];
 
-  private readonly allTrips = signal<Trip[]>([
+  private readonly allTrips: readonly Trip[] = [
     {
       id: 1,
-      description: 'Marruecos, Africa',
+      description: 'Bangkok, Tailandia',
       durationBucket: '9',
       title: 'Descubre Bangkok con Iberojet',
       priceValue: 248,
+      destination: 'Tailandia',
+      adventure: 'Quads',
       image: '/assets/images/cards/marruecos_1.png',
     },
     {
       id: 2,
-      description: 'Marruecos, Africa',
+      description: 'Marrakech, Marruecos',
       durationBucket: '9',
-      title: 'Descubre Bangkok con Iberojet',
-      priceValue: 248,
+      title: 'Aventura en parapente sobre Bangkok',
+      priceValue: 389,
+      destination: 'Marruecos',
+      adventure: 'Parapente',
       image: '/assets/images/cards/marruecos_2.png',
     },
     {
       id: 3,
-      description: 'Marruecos, Africa',
-      durationBucket: '9',
-      title: 'Descubre Bangkok con Iberojet',
-      priceValue: 248,
+      description: 'Tokio, Japon',
+      durationBucket: '6-8',
+      title: 'Ruta de rafting por los rios de Asia',
+      priceValue: 512,
+      destination: 'Japon',
+      adventure: 'Rafting',
       image: '/assets/images/cards/marruecos_3.png',
     },
-  ]);
+    {
+      id: 4,
+      description: 'Cusco, Peru',
+      durationBucket: '3-5',
+      title: 'Escapada de buceo con guia premium',
+      priceValue: 179,
+      destination: 'Peru',
+      adventure: 'Buceo',
+      image: '/assets/images/cards/marruecos_1.png',
+    },
+    {
+      id: 5,
+      description: 'Bali, Indonesia',
+      durationBucket: '9+',
+      title: 'Expedicion explora por mercados y templos',
+      priceValue: 699,
+      destination: 'Indonesia',
+      adventure: 'Explora',
+      image: '/assets/images/cards/marruecos_2.png',
+    },
+    {
+      id: 6,
+      description: 'Bangkok, Tailandia',
+      durationBucket: '6-8',
+      title: 'Semana de surf y snowboard en Asia',
+      priceValue: 455,
+      destination: 'Tailandia',
+      adventure: 'Surf',
+      image: '/assets/images/cards/marruecos_3.png',
+    },
+  ];
 
   readonly trips = computed(() => {
-    const { durations, priceMin, priceMax } = this.filters();
+    const { destinations, adventures, durations, priceMin, priceMax } = this.filters();
+    const hasNoActiveFilter =
+      destinations.length === 0 &&
+      adventures.length === 0 &&
+      durations.length === 0 &&
+      priceMin == null &&
+      priceMax == null;
 
-    return this.allTrips().filter((trip) => {
+    if (hasNoActiveFilter) {
+      return this.allTrips;
+    }
+
+    return this.allTrips.filter((trip) => {
+      const matchDestination = destinations.length === 0 || destinations.includes(trip.destination);
+      const matchAdventure = adventures.length === 0 || adventures.includes(trip.adventure);
       const matchDuration =
         durations.length === 0 ||
         (trip.durationBucket != null && durations.includes(trip.durationBucket));
@@ -118,17 +173,23 @@ export class HomePage {
       const matchMin = priceMin == null || trip.priceValue >= priceMin;
       const matchMax = priceMax == null || trip.priceValue <= priceMax;
 
-      return matchDuration && matchMin && matchMax;
+      return matchDestination && matchAdventure && matchDuration && matchMin && matchMax;
     });
   });
 
   readonly tripsForLayout = computed<TripForLayout[]>(() => {
     const base = this.trips();
     const repeatCount = 3;
+    const layoutTrips: TripForLayout[] = [];
 
-    return Array.from({ length: repeatCount }, (_, repeatIndex) =>
-      base.map((trip, index) => ({ ...trip, trackId: `${repeatIndex}-${index}-${trip.id}` })),
-    ).flat();
+    for (let repeatIndex = 0; repeatIndex < repeatCount; repeatIndex += 1) {
+      for (let index = 0; index < base.length; index += 1) {
+        const trip = base[index];
+        layoutTrips.push({ trip, trackId: `${repeatIndex}-${index}-${trip.id}` });
+      }
+    }
+
+    return layoutTrips;
   });
 
   constructor() {

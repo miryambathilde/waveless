@@ -1,11 +1,11 @@
 <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
 
-<header class="navbar" role="banner">
+<header class="navbar">
   <div class="container navbar__container">
     <a class="navbar__brand" routerLink="/" (click)="onNavigate()" aria-label="Ir a inicio">
       <img
         ngSrc="/assets/images/header-logo.svg"
-        alt="Waveless Logo"
+        alt="Waveless"
         width="145"
         height="32"
         priority
@@ -16,7 +16,7 @@
     <nav
       id="nav-links"
       class="navbar__nav"
-      aria-label="Navegacion principal"
+      aria-label="Navegaci&oacute;n principal"
       [attr.data-visible]="isMobileOpen()"
     >
       <a

@@ -1,7 +1,15 @@
 ﻿<article class="card">
   <div class="card__media">
-    <img class="card__image" [ngSrc]="image()" [alt]="title()" width="264" height="188" loading="lazy" />
-    <app-tag class="card__tag" label="Quads" variant="accent" size="sm" />
+    <img
+      class="card__image"
+      [ngSrc]="image()"
+      [alt]="title()"
+      width="264"
+      height="188"
+      loading="lazy"
+      decoding="async"
+    />
+    <app-tag class="card__tag" [label]="tag()" variant="accent" size="sm" />
   </div>
 
   <div class="card__content">
@@ -23,7 +31,6 @@
           <span class="card__price-value">{{ price() }}</span>
         </div>
 
-        <!-- wrapper para anclar el popover -->
         <div class="card__breakdown-wrap">
           <button
             #breakdownButton
@@ -33,6 +40,7 @@
             [attr.aria-expanded]="isPopoverOpen()"
             [attr.aria-controls]="popoverId"
             aria-haspopup="dialog"
+            [attr.aria-label]="'Ver desglose de precio de ' + title()"
           >
             <span class="card__breakdown-text">Ver desglose</span>
 
@@ -60,13 +68,9 @@
               [style.--popover-left.px]="popoverPosition().left"
               [style.--popover-top.px]="popoverPosition().top"
               [location]="description()"
-              [days]="durationBucket() ? durationBucket() + ' d\u00EDas' : ''"
-              [items]="[
-                { label: 'Precio antes de impuestos', value: '1.124,00 \u20AC' },
-                { label: 'Impuesto', value: '4,43 \u20AC' },
-                { label: 'Lorem ipsum', value: '150,42 \u20AC' },
-              ]"
-              [total]="'2.455,00 \u20AC'"
+              [days]="daysLabel()"
+              [items]="priceBreakdownItems"
+              [total]="priceBreakdownTotal"
               (close)="closePopover()"
             />
           }

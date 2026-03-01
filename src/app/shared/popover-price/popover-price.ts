@@ -13,11 +13,14 @@ export interface PopoverPriceItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PopoverPriceComponent {
+  private static nextPopoverId = 0;
+
   readonly title = input('Desglose de precios');
   readonly location = input('');
   readonly days = input('');
   readonly items = input<PopoverPriceItem[]>([]);
   readonly total = input('');
+  protected readonly titleId = `popover-price-title-${PopoverPriceComponent.nextPopoverId++}`;
 
   readonly close = output<void>();
 

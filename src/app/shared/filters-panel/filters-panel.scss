@@ -12,14 +12,14 @@
   $self: &;
   --filters-accent: #{$secondary-550};
 
-  width: 264px;
+  width: 16.5rem;
   background: $bg-surface-soft-default;
-  border-radius: 24px;
-  padding: 0 20px 20px;
+  border-radius: 1.5rem;
+  padding: 0 1.25rem 1.25rem;
 
   &__header {
-    margin: 0 -20px 8px;
-    padding: 18px var(--filters-header-pr, 20px) 16px 20px;
+    margin: 0 -1.25rem 0.5rem;
+    padding: 1.125rem var(--filters-header-pr, 1.25rem) 1rem var(--filters-header-pl, 1.25rem);
     border-bottom: 1px solid $border-medium-default;
   }
 
@@ -27,10 +27,10 @@
     margin: 0;
     font-family: typography.$font-family-display;
     font-weight: 700;
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
     color: $fg-on-white-default;
-    text-align: left;
+    text-align: var(--filters-title-align, center);
     white-space: nowrap;
   }
 
@@ -73,9 +73,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
-    min-height: 48px;
-    padding: 6px 0;
+    gap: 0.5rem;
+    min-height: 3rem;
+    padding: 0.375rem 0;
     cursor: pointer;
 
     &::-webkit-details-marker {
@@ -86,9 +86,9 @@
   &__summary-left {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    line-height: 20px;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
     font-weight: 600;
     color: $fg-primary-dark-default;
   }
@@ -97,8 +97,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
+    width: 1.5rem;
+    height: 1.5rem;
 
     &-img {
       &--open {
@@ -108,8 +108,8 @@
   }
 
   &__chev {
-    width: 24px;
-    height: 24px;
+    width: 1.5rem;
+    height: 1.5rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -126,19 +126,19 @@
 
   &__body {
     display: grid;
-    gap: 6px;
-    padding: 2px 0 12px;
+    gap: 0.375rem;
+    padding: 0.125rem 0 0.75rem;
 
     &--price {
-      gap: 10px;
+      gap: 0.625rem;
       padding-bottom: 0;
     }
   }
 
   &__hint {
     margin: 0;
-    font-size: 12px;
-    line-height: 16px;
+    font-size: 0.75rem;
+    line-height: 1rem;
     color: rgba($fg-on-white-default, 0.7);
   }
 
@@ -153,8 +153,8 @@
   &__check {
     display: flex;
     align-items: center;
-    gap: 10px;
-    min-height: 40px;
+    gap: 0.625rem;
+    min-height: 2.5rem;
     padding: 0;
     cursor: pointer;
 
@@ -171,10 +171,10 @@
       &:checked + #{$self}__check-box::after {
         content: '';
         position: absolute;
-        left: 4px;
-        top: 1px;
-        width: 5px;
-        height: 9px;
+        left: 0.25rem;
+        top: 0.0625rem;
+        width: 0.3125rem;
+        height: 0.5625rem;
         border-right: 1.8px solid $bg-primary-dark-default;
         border-bottom: 1.8px solid $bg-primary-dark-default;
         transform: rotate(45deg);
@@ -186,9 +186,9 @@
     }
 
     &-box {
-      width: 16px;
-      height: 16px;
-      border-radius: 3px;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 0.1875rem;
       border: 1px solid rgba($fg-on-white-default, 0.35);
       background: transparent;
       position: relative;
@@ -196,8 +196,8 @@
     }
 
     &-label {
-      font-size: 14px;
-      line-height: 20px;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
       font-weight: 400;
       color: $fg-on-white-default;
     }
@@ -208,10 +208,17 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    border-radius: 0.25rem;
+    cursor: help;
+
+    &:focus-visible {
+      outline: 2px solid $bg-secondary-medium-default;
+      outline-offset: 2px;
+    }
 
     img {
-      width: 14px;
-      height: 14px;
+      width: 0.875rem;
+      height: 0.875rem;
       display: block;
     }
 
@@ -223,15 +230,15 @@
 
   &__tooltip {
     position: absolute;
-    bottom: calc(100% + 4px);
+    bottom: calc(100% + 0.25rem);
     left: 50%;
     transform: translateX(-50%);
-    padding: 8px 12px;
-    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
     background: $bg-white-default;
     color: $fg-on-white-default;
-    font-size: 12px;
-    line-height: 16px;
+    font-size: 0.75rem;
+    line-height: 1rem;
     white-space: nowrap;
     box-shadow: $shadow-popover;
     opacity: 0;
@@ -246,9 +253,9 @@
       transform: translateX(-50%);
       width: 0;
       height: 0;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-top: 6px solid $bg-white-default;
+      border-left: 0.375rem solid transparent;
+      border-right: 0.375rem solid transparent;
+      border-top: 0.375rem solid $bg-white-default;
     }
   }
 
@@ -258,8 +265,8 @@
     border: 0;
     background: transparent;
     color: $fg-primary-dark-default;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
     font-weight: 600;
     text-decoration: underline;
     cursor: pointer;
@@ -268,17 +275,17 @@
   .input {
     &__label {
       color: var(--filters-accent);
-      font-size: 14px;
-      line-height: 20px;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
       font-weight: 500;
     }
 
     &__field {
-      min-height: 54px;
+      min-height: 3.375rem;
       border-radius: 999px;
       border: 1px solid $border-primary-dark-default;
       background: $bg-white-default;
-      padding: 0 16px;
+      padding: 0 1rem;
     }
 
     &__icon {
@@ -286,8 +293,8 @@
     }
 
     &__control {
-      font-size: 14px;
-      line-height: 20px;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
       color: $fg-on-white-default;
 
       &::placeholder {

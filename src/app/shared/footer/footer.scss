@@ -2,12 +2,12 @@
 @use '../../../styles/tokens/typography' as typography;
 
 .footer {
-  margin-top: 56px;
+  margin-top: 3.5rem;
   border-top: 1px solid $border-primary-dark-soft;
   background: $bg-surface-soft-default;
 
   &__top {
-    min-height: 128px;
+    min-height: 8rem;
     display: flex;
     align-items: center;
   }
@@ -19,13 +19,13 @@
   }
 
   &__logo {
-    width: 145px;
-    height: 32px;
+    width: 9.0625rem;
+    height: 2rem;
     display: block;
   }
 
   &__bottom {
-    height: 52px;
+    height: 3.25rem;
     background: $bg-medium-light-default;
     display: flex;
     align-items: center;
@@ -41,8 +41,8 @@
     margin: 0;
     font-family: typography.$font-family-base;
     color: $fg-primary-dark-default;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
     font-weight: 700;
     opacity: 0.9;
     text-align: center;

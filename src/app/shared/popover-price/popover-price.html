@@ -1,6 +1,6 @@
-<div class="popover-price" role="dialog" aria-modal="false" [attr.aria-label]="title()">
+<div class="popover-price" role="dialog" aria-modal="false" [attr.aria-labelledby]="titleId">
   <div class="popover-price__header">
-    <p class="popover-price__title">{{ title() }}</p>
+    <p [attr.id]="titleId" class="popover-price__title">{{ title() }}</p>
 
     <button type="button" class="popover-price__close" aria-label="Cerrar" (click)="onDismiss()">
       <svg
