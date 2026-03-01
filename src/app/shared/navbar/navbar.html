@@ -13,7 +13,12 @@
       />
     </a>
 
-    <nav class="navbar__nav" aria-label="Navegacion principal">
+    <nav
+      id="nav-links"
+      class="navbar__nav"
+      aria-label="Navegacion principal"
+      [attr.data-visible]="isMobileOpen()"
+    >
       <a
         class="navbar__tab"
         routerLink="/"
@@ -38,6 +43,7 @@
         routerLink="/destinos"
         routerLinkActive="navbar__tab--active"
         [routerLinkActiveOptions]="{ exact: true }"
+        (click)="onNavigate()"
       >
         <span class="navbar__icon" aria-hidden="true">
           <img
@@ -56,6 +62,7 @@
         routerLink="/alojamiento"
         routerLinkActive="navbar__tab--active"
         [routerLinkActiveOptions]="{ exact: true }"
+        (click)="onNavigate()"
       >
         <span class="navbar__icon" aria-hidden="true">
           <img
@@ -74,6 +81,7 @@
         routerLink="/sobre-nosotros"
         routerLinkActive="navbar__tab--active"
         [routerLinkActiveOptions]="{ exact: true }"
+        (click)="onNavigate()"
       >
         <span class="navbar__icon navbar__icon--hidden" aria-hidden="true"></span>
         <span class="navbar__label">Sobre nosotros</span>
@@ -92,85 +100,13 @@
       (click)="toggle()"
       [attr.aria-label]="isMobileOpen() ? 'Cerrar menu' : 'Abrir menu'"
       [attr.aria-expanded]="isMobileOpen()"
-      aria-controls="mobile-nav"
+      aria-controls="nav-links"
     >
-      &#9776;
+      @if (isMobileOpen()) {
+        <span aria-hidden="true">&#10005;</span>
+      } @else {
+        <span aria-hidden="true">&#9776;</span>
+      }
     </button>
   </div>
 </header>
-
-@if (isMobileOpen()) {
-  <div
-    #mobileDialog
-    id="mobile-nav"
-    class="mobile-nav"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="mobile-nav-title"
-    (click)="onOverlayClick($event)"
-    (keydown)="onMobileKeydown($event)"
-    tabindex="-1"
-  >
-    <div class="mobile-nav__panel">
-      <div class="mobile-nav__header">
-        <span id="mobile-nav-title" class="mobile-nav__title">Menu</span>
-        <button
-          #mobileClose
-          type="button"
-          class="mobile-nav__close"
-          (click)="close()"
-          aria-label="Cerrar menu"
-        >
-          &#10005;
-        </button>
-      </div>
-
-      <nav class="mobile-nav__links" aria-label="Navegacion movil">
-        <a
-          class="mobile-nav__link"
-          routerLink="/"
-          routerLinkActive="mobile-nav__link--active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          (click)="onNavigate()"
-        >
-          Aventura
-        </a>
-
-        <a
-          class="mobile-nav__link"
-          routerLink="/destinos"
-          routerLinkActive="mobile-nav__link--active"
-          (click)="onNavigate()"
-        >
-          Destinos
-        </a>
-
-        <a
-          class="mobile-nav__link"
-          routerLink="/alojamiento"
-          routerLinkActive="mobile-nav__link--active"
-          (click)="onNavigate()"
-        >
-          Alojamiento
-        </a>
-
-        <a
-          class="mobile-nav__link"
-          routerLink="/sobre-nosotros"
-          routerLinkActive="mobile-nav__link--active"
-          (click)="onNavigate()"
-        >
-          Sobre nosotros
-        </a>
-
-        <a
-          class="mobile-nav__cta button button--primary button--md"
-          routerLink="/destinos"
-          (click)="onNavigate()"
-        >
-          Reserva
-        </a>
-      </nav>
-    </div>
-  </div>
-}
