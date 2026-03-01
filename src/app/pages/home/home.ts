@@ -96,7 +96,7 @@ export class HomePage {
       priceValue: 248,
       destination: 'Tailandia',
       adventure: 'Quads',
-      image: '/assets/images/cards/marruecos_1.png',
+      image: 'assets/images/cards/marruecos_1.png',
     },
     {
       id: 2,
@@ -106,7 +106,7 @@ export class HomePage {
       priceValue: 389,
       destination: 'Marruecos',
       adventure: 'Parapente',
-      image: '/assets/images/cards/marruecos_2.png',
+      image: 'assets/images/cards/marruecos_2.png',
     },
     {
       id: 3,
@@ -116,7 +116,7 @@ export class HomePage {
       priceValue: 512,
       destination: 'Japon',
       adventure: 'Rafting',
-      image: '/assets/images/cards/marruecos_3.png',
+      image: 'assets/images/cards/marruecos_3.png',
     },
     {
       id: 4,
@@ -126,7 +126,7 @@ export class HomePage {
       priceValue: 179,
       destination: 'Peru',
       adventure: 'Buceo',
-      image: '/assets/images/cards/marruecos_1.png',
+      image: 'assets/images/cards/marruecos_1.png',
     },
     {
       id: 5,
@@ -136,7 +136,7 @@ export class HomePage {
       priceValue: 699,
       destination: 'Indonesia',
       adventure: 'Explora',
-      image: '/assets/images/cards/marruecos_2.png',
+      image: 'assets/images/cards/marruecos_2.png',
     },
     {
       id: 6,
@@ -146,7 +146,7 @@ export class HomePage {
       priceValue: 455,
       destination: 'Tailandia',
       adventure: 'Surf',
-      image: '/assets/images/cards/marruecos_3.png',
+      image: 'assets/images/cards/marruecos_3.png',
     },
   ];
 
