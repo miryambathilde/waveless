@@ -1,10 +1,3 @@
-# Prueba Maquetadoción Web Responsive
-
-## Datos de la candidata
-
-- GitHub: [miryambathilde](https://github.com/miryambathilde)
-- Repositorio: <https://github.com/miryambathilde/waveless>
-
 ## 1. Contexto y objetivo
 
 Esta entrega corresponde a la maquetación de la **página de inicio (home)** de un sitio ficticio de viajes, tomando como base el diseño en Figma y los requisitos del reto:
